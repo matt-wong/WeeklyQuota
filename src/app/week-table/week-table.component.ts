@@ -10,7 +10,7 @@ export class WeekTableComponent implements OnInit {
 
   @Input() quotas: quotaTopic[] = [];
 
-  displayedColumns: string[] = ['name', 'status'];
+  displayedColumns: string[] = ['name', 'status', 'day0', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6'];
   constructor() { }
 
   ngOnInit(): void {
