@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { quotaTopic } from './week-table/week-table.model';
 
 @Pipe({
-  name: 'quotaFraction'
+  name: 'quotaFraction',
+  pure: false
 })
 export class QuotaFractionPipe implements PipeTransform {
 
