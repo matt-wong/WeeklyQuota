@@ -7,11 +7,13 @@ import { WeekTableComponent } from './week-table/week-table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { QuotaFractionPipe } from './quota-fraction.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeekTableComponent
+    WeekTableComponent,
+    QuotaFractionPipe
   ],
   imports: [
     BrowserModule,

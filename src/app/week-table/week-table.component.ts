@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { quota } from './week-table.model';
+import { quotaTopic } from './week-table.model';
 
 @Component({
   selector: 'app-week-table',
@@ -8,7 +8,7 @@ import { quota } from './week-table.model';
 })
 export class WeekTableComponent implements OnInit {
 
-  @Input() quotas: quota[] = [];
+  @Input() quotas: quotaTopic[] = [];
 
   displayedColumns: string[] = ['name', 'status'];
   constructor() { }

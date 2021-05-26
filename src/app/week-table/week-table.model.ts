@@ -1,4 +1,4 @@
-export interface quota {
+export interface quotaTopic {
     name: string;
     icon: string;
     quota: number;
