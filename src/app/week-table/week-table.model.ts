@@ -4,4 +4,5 @@ export interface quotaTopic {
     quota: number;
     // valueOptions: number[];
     daysValues: number[];
+    weekComment?: string;
 }
