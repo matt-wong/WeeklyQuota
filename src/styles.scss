@@ -37,3 +37,11 @@ $weeklyQuota-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 10px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.green-progress .mat-progress-bar-fill::after {
+  background-color: green !important;
+}
+
+.red-progress .mat-progress-bar-fill::after {
+  background-color: red !important;
+}
