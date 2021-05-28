@@ -11,14 +11,16 @@ import { QuotaFractionPipe } from './quota-fraction.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { MatProgressBarModule} from '@angular/material/progress-bar'
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { QuotaPercentPipe } from './quota-percent.pipe'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WeekTableComponent,
-    QuotaFractionPipe
+    QuotaFractionPipe,
+    QuotaPercentPipe
   ],
   imports: [
     BrowserModule,
