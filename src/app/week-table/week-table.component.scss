@@ -3,6 +3,9 @@ table {
     mat-form-field{
       width: 50px;
     }
+    mat-form-field.wider-form-field{
+      width: 150px;
+    }
     .mat-column-status{
       width: 200px;
     }

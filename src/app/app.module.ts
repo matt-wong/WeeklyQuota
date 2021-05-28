@@ -11,6 +11,7 @@ import { QuotaFractionPipe } from './quota-fraction.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { QuotaPercentPipe } from './quota-percent.pipe'
 
@@ -31,7 +32,8 @@ import { QuotaPercentPipe } from './quota-percent.pipe'
     MatFormFieldModule,
     FormsModule,
     MatSelectModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
