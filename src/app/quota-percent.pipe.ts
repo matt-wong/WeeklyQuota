@@ -13,7 +13,6 @@ export class QuotaPercentPipe implements PipeTransform {
       sum = sum + val;
     });
 
-    console.log(sum / quota.quota * 100);
     return sum / quota.quota * 100;
   }
 
