@@ -19,10 +19,6 @@ export class WeekTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.quotas.push({name: 'Cooked Meals', daysValues: [1, 2, 0, 0, 0, 2, 1], icon: 'home', quota: 8,},
-    {name: 'Vegetarian Meals', daysValues: [1, 1, 0, 0, 0, 0, 1], icon: 'fastfood', quota: 3, weekComment: 'VBurger'},
-    {name: 'Hobby Session', daysValues: [0, 1, 0, 0, 0, 1, 1], icon: 'brush', quota: 5}
-    )
   }
 
 }
