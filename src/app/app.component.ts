@@ -47,4 +47,10 @@ export class AppComponent {
     date.setDate(date.getDate() + 365);
     this.cookieService.set('data', JSON.stringify(this.quotas), date);
   }
+
+  onClear() {
+    this.quotas.forEach(quota => {
+      quota.daysValues = [0,0,0,0,0,0,0];
+    });
+  }
 }
