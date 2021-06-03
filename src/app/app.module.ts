@@ -12,6 +12,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { QuotaPercentPipe } from './quota-percent.pipe'
 
@@ -33,9 +34,10 @@ import { QuotaPercentPipe } from './quota-percent.pipe'
     FormsModule,
     MatSelectModule,
     MatProgressBarModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [QuotaPercentPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
