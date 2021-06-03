@@ -7,11 +7,18 @@
       <mat-icon aria-hidden="false">{{element.icon}}</mat-icon> {{element.name}}
     </td>
   </ng-container>
+
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> Progress </th>
     <td mat-cell *matCellDef="let element">
-      <span class="progress-section">
         <label>{{element | quotaFraction}} </label>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="statusBar">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <span class="progress-section">
         <mat-progress-bar  [ngClass]="(element | quotaPercent) > 99 ? 'green-progress' : 'red-progress'" mode="determinate" value="{{ element | quotaPercent }}"></mat-progress-bar>
       </span>
     </td>
