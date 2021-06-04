@@ -29,7 +29,7 @@ export class WeekTableComponent implements OnInit {
     this.saveService.saveData(this.quotas); 
 
     if (this.quotaPercentPipe.transform(quotaTopic) >= 100){
-      this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!');
+      this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'dismiss', {duration: 4000});
     }
 
   }
