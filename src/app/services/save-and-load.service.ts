@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { quotaTopic } from './week-table/week-table.model';
+import { quotaTopic } from '.././week-table/week-table.model';
 
 @Injectable({
   providedIn: 'root'
