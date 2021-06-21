@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { QuotaPercentPipe } from './quota-percent.pipe'
+import { SaveAndLoadService } from './services/save-and-load.service';
+import { IpcService } from './services/ipc.service';
 
 
 @NgModule({
@@ -37,7 +39,7 @@ import { QuotaPercentPipe } from './quota-percent.pipe'
     MatInputModule,
     MatSnackBarModule
   ],
-  providers: [QuotaPercentPipe],
+  providers: [QuotaPercentPipe, SaveAndLoadService, IpcService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
