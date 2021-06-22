@@ -13,9 +13,10 @@ function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     maximizable: true,
-    // webPreferences: {
-    //   preload: path.join(__dirname, 'preload.js')
-    // }
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
   })
 
   mainWindow.maximize()
@@ -48,8 +49,18 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-console.log('yo');
 ipcMain.on('ping', (event) => {
-  console.log('ping here!')
-  event.sender.send('pong');
+
+  store.set('unicorn', 'u1');
+  // event.sender.send('log', event);
+
+  store.set('unicorn', 'u1');
+  event.sender.send('log', store.get('unicorn'));
+  //=> 'u1'
+
+  // Use dot-notation to access nested properties
+  store.set('foo.bar', true);
+  event.sender.send('log', store.get('foo'));
+  //=> {bar: true}
+
 });

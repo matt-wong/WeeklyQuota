@@ -18,9 +18,7 @@ export class AppComponent {
   constructor(private saveLoadService: SaveAndLoadService, private calService: CalendarService, private _ipc: IpcService) {
     this.quotas = this.saveLoadService.loadData();
 
-    this._ipc.on('pong', (event: Electron.IpcMessageEvent) => {
-      console.log('pong');
-    });
+    this._ipc.on('log');
 
     this._ipc.send('ping', '');
 

@@ -9,7 +9,9 @@ export class IpcService {
     if (window.require) {
       try {
         this._ipc = window.require('electron').ipcRenderer;
+        console.log(this._ipc);
       } catch (e) {
+        console.log('no this._ipc');
         throw e;
       }
     } else {
@@ -17,12 +19,14 @@ export class IpcService {
     }
   }
 
-  public on(channel: string, listener: any): void {
-    console.log(channel)
+  public on(channel: string): void {
     if (!this._ipc) {
       return;
     }
-    console.log(channel)
+    const listener = (event: any, args: []) : void => {
+      console.log(args);
+      console.log(event);
+    }
     this._ipc.on(channel, listener);
   }
 
