@@ -30,7 +30,7 @@ export class IpcService {
     this._ipc.on(channel, listener);
   }
 
-  public send(channel: string, arg: string): void {
+  public send(channel: string, arg: any): void {
     if (!this._ipc) {
       return;
     }

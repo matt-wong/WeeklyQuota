@@ -20,7 +20,7 @@ export class AppComponent {
 
     this._ipc.on('log');
 
-    this._ipc.send('ping', '');
+    this._ipc.send('ping', {thingToSay: 'HELLLOO'});
 
   }
 
