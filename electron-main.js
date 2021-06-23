@@ -3,21 +3,38 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const Store = require('electron-store');
+
+const store = new Store();
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     maximizable: true,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+    // webPreferences: {
+    //   preload: path.join(__dirname, 'preload.js')
+    // }
   })
+
+  mainWindow.maximize()
 
   // and load the index.html of the app.
   mainWindow.loadFile('./dist/weeklyQuota/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+  store.set('unicorn', 'u1');
+  console.log(store.get('unicorn'));
+  //=> 'u1'
+
+  // Use dot-notation to access nested properties
+  store.set('foo.bar', true);
+  console.log(store.get('foo'));
+  //=> {bar: true}
+
+  store.delete('unicorn');
+  console.log(store.get('unicorn'));
+//=> undefined
 }
 
 // This method will be called when Electron has finished
