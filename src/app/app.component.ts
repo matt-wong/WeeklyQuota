@@ -17,17 +17,10 @@ export class AppComponent {
 
   constructor(private saveLoadService: SaveAndLoadService, private calService: CalendarService, private _ipc: IpcService) {
     this.quotas = this.saveLoadService.loadData();
-
-    this._ipc.on('log');
-
-    this._ipc.send('ping', {thingToSay: 'HELLLOO'});
-
   }
 
   onSave() { //TODO: auto save on changes
     this.saveLoadService.saveData(this.quotas);
-    console.log(this.calService.getDayOfWeek());
-    console.log(this.calService.getWeekProgress());
   }
 
   onClear() {

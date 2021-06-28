@@ -49,18 +49,17 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-ipcMain.on('ping', (event, arg) => {
+ipcMain.on('save', (event, arg) => {
 
   console.log(arg);
   store.set('savedData', arg);
   // event.sender.send('log', event);
+  console.log(store.get('savedData'));
 
   event.sender.send('log', store.get('savedData'));
-  //=> 'u1'
 
-  // Use dot-notation to access nested properties
-  store.set('foo.bar', true);
-  event.sender.send('log', store.get('foo'));
-  //=> {bar: true}
+});
 
+ipcMain.on('load', (event, arg) => {
+  event.sender.send('load', store.get('savedData'));
 });
