@@ -1,12 +1,13 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { IpcRenderer } from 'electron';
+import { Subject } from 'rxjs';
 import { quotaTopic } from '../week-table/week-table.model';
 
 @Injectable()
 export class IpcService {
   private _ipc: IpcRenderer | undefined = void 0;
 
-  @Output() loadEvent: EventEmitter <quotaTopic[]> = new EventEmitter;
+  @Output() loadEvent: Subject <quotaTopic[]> = new Subject;
 
   constructor() {
     if (window.require) {
@@ -25,7 +26,7 @@ export class IpcService {
         this._ipc.on('log', listener);
 
         
-        //Set up Logging from electron
+        //Set up Loading from electron
         const loadListener = (event: any, args: any[]) : void => {
           console.log('LOADING FROM Electron');
           console.log(args);
@@ -34,7 +35,7 @@ export class IpcService {
 
           const quotaTopic: quotaTopic[] = JSON.parse(args[0].data);
 
-          this.loadEvent.emit(quotaTopic);
+          this.loadEvent.next(quotaTopic);
         }
         this._ipc.on('load', loadListener);
 

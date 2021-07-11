@@ -9,17 +9,21 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SaveAndLoadService {
+
+  loadFromExternal$ = new Subject<quotaTopic[]>();
+
   loadFromExternal() {
-    this.ipcService.loadEvent.pipe(map((topics) => {
-      this.loadFromExternal$.next(<quotaTopic[]>topics);
-    })).subscribe();
+    
+    // this.loadFromExternal$.next([{ name: 'test', daysValues: [1, 1, 0, 0, 0, 0, 1], icon: 'spa', quota: 3 }]);
+
+    this.ipcService.loadEvent.subscribe((topics) => {
+      this.loadFromExternal$.next(<quotaTopic[]>topics);});
 
     this.ipcService.send('load', {});
   }
 
-  loadFromExternal$ = new Subject<quotaTopic[]>();
-
-  constructor(private cookieService: CookieService, private ipcService: IpcService) {}
+  constructor(private cookieService: CookieService, private ipcService: IpcService) {
+  }
 
   loadDataCookies(): quotaTopic[] {
     if (this.cookieService.get('data')) {

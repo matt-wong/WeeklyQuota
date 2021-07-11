@@ -14,37 +14,30 @@ export class AppComponent implements OnInit {
 
   title = 'weeklyQuota';
   quotas: quotaTopic[];
-  myData: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([])
 
   constructor(private saveLoadService: SaveAndLoadService, private calService: CalendarService, private _ipc: IpcService) {
-    this.quotas = [{ name: 'Vegetarian Meals', daysValues: [1, 1, 0, 0, 0, 0, 1], icon: 'spa', quota: 3 }];
+    this.quotas = [];
   }
 
   ngOnInit(): void {
-    this.saveLoadService.loadFromExternal();
 
     this.saveLoadService.loadFromExternal$.subscribe((q: quotaTopic[]) => {
-            
-      // // this.myData.next();
-
-
-      q.forEach(element => {
-        console.log(element)
-        this.quotas = [...this.quotas, element];
-      });
-
-      console.log(this.quotas);
-      console.table(this.quotas);
-      
-      this.quotas = this.quotas.slice();
-
-    }
-    
+      this.loadQuotas(q);
+      }
     );
-    const q = [{ name: 'Begetarian Meals', daysValues: [1, 1, 0, 0, 0, 0, 1], icon: 'spa', quota: 3 }, { name: 'Aegetarian Meals', daysValues: [1, 1, 0, 0, 0, 0, 1], icon: 'spa', quota: 3 }];
-    q.forEach(element => {
+
+    this.saveLoadService.loadFromExternal();
+  
+    setTimeout(() => {
+      this.loadQuotas([]);
+    }, 3000);
+  }
+
+  loadQuotas(newQ: quotaTopic[]){
+    newQ.forEach(element => {
       console.log(element)
       this.quotas = [...this.quotas, element];
+      console.log(this.quotas)
     });
 
     this.quotas = this.quotas.slice();
