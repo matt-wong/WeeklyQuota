@@ -1,4 +1,5 @@
 <H1>{{title}}</H1>
+<pre>{{myData | async | json}}</pre>
 <app-week-table [quotas]='quotas'></app-week-table>
 <button (click)='onSave()'>Save</button>
 <button (click)='onClear()'>Clear Data</button>

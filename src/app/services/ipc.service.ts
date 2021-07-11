@@ -26,10 +26,15 @@ export class IpcService {
 
         
         //Set up Logging from electron
-        const loadListener = (event: any, args: []) : void => {
+        const loadListener = (event: any, args: any[]) : void => {
           console.log('LOADING FROM Electron');
           console.log(args);
-          this.loadEvent.emit(<quotaTopic[]>args);
+          console.log(args[0]);
+          console.log(args[0].data);
+
+          const quotaTopic: quotaTopic[] = JSON.parse(args[0].data);
+
+          this.loadEvent.emit(quotaTopic);
         }
         this._ipc.on('load', loadListener);
 
@@ -54,6 +59,7 @@ export class IpcService {
   }
 
   public send(channel: string, arg: any): void {
+    console.log(channel);
     if (!this._ipc) {
       return;
     }

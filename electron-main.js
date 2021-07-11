@@ -61,5 +61,5 @@ ipcMain.on('save', (event, arg) => {
 });
 
 ipcMain.on('load', (event, arg) => {
-  event.sender.send('load', store.get('savedData'));
+  event.sender.send('load', [{data: store.get('savedData')}]);
 });

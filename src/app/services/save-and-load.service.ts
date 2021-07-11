@@ -2,24 +2,26 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { quotaTopic } from '.././week-table/week-table.model';
 import { IpcService } from './ipc.service';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaveAndLoadService {
-
-  constructor(private cookieService: CookieService, private ipcService: IpcService) {}
-
-  loadData(): quotaTopic[] {
-    
-    this.ipcService.loadEvent.pipe(tap((topics) => {
-      console.log('tap');
-      console.log(topics);
+  loadFromExternal() {
+    this.ipcService.loadEvent.pipe(map((topics) => {
+      this.loadFromExternal$.next(<quotaTopic[]>topics);
     })).subscribe();
 
     this.ipcService.send('load', {});
+  }
 
+  loadFromExternal$ = new Subject<quotaTopic[]>();
+
+  constructor(private cookieService: CookieService, private ipcService: IpcService) {}
+
+  loadDataCookies(): quotaTopic[] {
     if (this.cookieService.get('data')) {
       try {
         return JSON.parse(this.cookieService.get('data'));
