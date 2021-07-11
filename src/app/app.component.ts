@@ -35,9 +35,7 @@ export class AppComponent implements OnInit {
 
   loadQuotas(newQ: quotaTopic[]){
     newQ.forEach(element => {
-      console.log(element)
       this.quotas = [...this.quotas, element];
-      console.log(this.quotas)
     });
 
     this.quotas = this.quotas.slice();
