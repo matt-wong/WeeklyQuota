@@ -73,7 +73,7 @@ export class SaveAndLoadService {
     this.cookieService.set('data', JSON.stringify(quotaData), date);
 
     this.ipcService.send('save', JSON.stringify(quotaData));
-    console.log('save from saveData()')
+    console.log(quotaData);
   }
 
 }

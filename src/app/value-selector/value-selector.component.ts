@@ -4,6 +4,7 @@ import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuotaPercentPipe } from '../quota-percent.pipe';
+import { CalendarService } from '../services/calendar.service';
 import { SaveAndLoadService } from '../services/save-and-load.service';
 import { quotaTopic } from '../week-table/week-table.model';
 
@@ -19,9 +20,13 @@ export class ValueSelectorComponent implements OnInit {
 
   @Output() changeEvent: EventEmitter<void> = new EventEmitter();
 
-  constructor() { }
+  isFuture: boolean = false;
+
+  constructor(private calendarService: CalendarService) {
+  }
 
   ngOnInit(): void {
+    this.isFuture = this.i > this.calendarService.getDayOfWeek(); 
   }
 
   onSelectionChange($event: any, quotaTopic?: quotaTopic){
