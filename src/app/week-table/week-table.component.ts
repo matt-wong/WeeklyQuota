@@ -31,4 +31,14 @@ export class WeekTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelectionChange(quotaTopic: quotaTopic){
+    this.saveService.saveData(this.quotas); 
+
+    if (this.quotaPercentPipe.transform(quotaTopic) >= 100){
+      this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', {duration: 4000});
+    }
+
+    //TODO: Full week Complete! toast
+  }
+
 }

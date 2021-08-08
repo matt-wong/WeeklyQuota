@@ -1,4 +1,6 @@
 import { Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuotaPercentPipe } from '../quota-percent.pipe';
@@ -15,9 +17,9 @@ export class ValueSelectorComponent implements OnInit {
   @Input() element: quotaTopic = {name:'dummy', icon: 'dummy', weekComment: '', daysValues: [], quota: 1};
   @Input() i: number = 0;
 
-  constructor(private snackBarService: MatSnackBar,
-    private saveService: SaveAndLoadService,
-    private quotaPercentPipe: QuotaPercentPipe) { }
+  @Output() changeEvent: EventEmitter<void> = new EventEmitter();
+
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -27,14 +29,7 @@ export class ValueSelectorComponent implements OnInit {
       return;
     }
 
-    // this.saveService.saveData(this.quotas); 
-
-    if (this.quotaPercentPipe.transform(quotaTopic) >= 100){
-      this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', {duration: 4000});
-    }
-
-    // TODO: Full week Complete! toast
-
+    this.changeEvent.emit($event);
   }
 
 }
