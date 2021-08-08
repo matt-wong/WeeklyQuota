@@ -21,12 +21,14 @@ export class ValueSelectorComponent implements OnInit {
   @Output() changeEvent: EventEmitter<void> = new EventEmitter();
 
   isFuture: boolean = false;
+  dayOfWeek: number = 0;
 
   constructor(private calendarService: CalendarService) {
+    this.dayOfWeek = this.calendarService.getDayOfWeek()
   }
 
   ngOnInit(): void {
-    this.isFuture = this.i > this.calendarService.getDayOfWeek(); 
+    this.isFuture = this.i > this.dayOfWeek; 
   }
 
   onSelectionChange($event: any, quotaTopic?: quotaTopic){
