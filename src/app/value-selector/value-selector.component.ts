@@ -19,6 +19,8 @@ export class ValueSelectorComponent implements OnInit {
 
   isFuture: boolean = false;
   dayOfWeek: number = 0;
+  valueOptions: number[] = [0, 0.5, 1, 2];
+  addedCompleteValue: number = 0;
 
   constructor(private calendarService: CalendarService) {
     this.dayOfWeek = this.calendarService.getDayOfWeek()
@@ -37,8 +39,16 @@ export class ValueSelectorComponent implements OnInit {
   }
 
   onPlanCompletion(){
-    this.element.daysValues[this.i].completed += this.element.daysValues[this.i].planned;
-    this.element.daysValues[this.i].planned = 0;
+    this.addedCompleteValue = this.element.daysValues[this.i].completed + this.element.daysValues[this.i].planned;
+    if (this.valueOptions.includes(this.addedCompleteValue)){
+      // Don't bother showing the same option twice
+      this.addedCompleteValue = 0;
+    }
+
+    setTimeout(() => {
+      this.element.daysValues[this.i].completed += this.element.daysValues[this.i].planned;
+      this.element.daysValues[this.i].planned = 0;
+    })
   }
 
 }
