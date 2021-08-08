@@ -56,8 +56,25 @@ table {
     } 
 
     .today-header {
-      font-weight: 600;
-      color: black;
+      width: 150px;
+      label{
+        font-weight: 600;
+        color: black;
+        background-color: #919bd0;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      .sub-headers {
+        margin-top: 10px;
+        label{
+          padding: 0;
+          display: inline-flex;
+          width: 60px;
+          color: #919bd0  ;
+          background-color: transparent;
+        }
+      }
     }
 
     .progress-section{

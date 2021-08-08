@@ -2,10 +2,7 @@ import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { QuotaPercentPipe } from '../quota-percent.pipe';
 import { CalendarService } from '../services/calendar.service';
-import { SaveAndLoadService } from '../services/save-and-load.service';
 import { quotaTopic } from '../week-table/week-table.model';
 
 @Component({

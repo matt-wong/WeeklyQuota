@@ -1,15 +1,13 @@
 mat-form-field{
     width: 50px;
     height: 50px;
+    margin-right: 10px;
 }
 
 mat-form-field.wider-form-field{
     width: 150px;
 }
 
-.future-select{
-    mat-option{
-        background-color: yellow;
-    }
+.future-select {
     background-color: beige;
 }
