@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { QuotaFractionPipe } from './quota-fraction.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
@@ -33,6 +34,7 @@ import { ValueSelectorComponent } from './value-selector/value-selector.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
     FormsModule,

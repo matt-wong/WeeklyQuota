@@ -4,9 +4,14 @@
         <mat-option [value]=0>0</mat-option>
         <mat-option [value]=0.5>.5</mat-option>
         <mat-option [value]=1>1</mat-option>
+        <mat-option [value]=1.5>1.5</mat-option>
         <mat-option [value]=2>2</mat-option>
+        <mat-option [value]=2.5>2.5</mat-option>
     </mat-select>
 </mat-form-field>
+<button *ngIf="this.i === this.dayOfWeek" mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="onPlanCompletion()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
 <mat-form-field [ngClass]="{'future-select': isFuture}" *ngIf='isFuture || this.i === this.dayOfWeek'>
     <mat-select  disableRipple [(value)]="element.daysValues[i].planned"
         (selectionChange)='onSelectionChange($event, element)'>

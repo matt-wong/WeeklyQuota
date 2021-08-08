@@ -25,7 +25,7 @@ export class ValueSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isFuture = this.i > this.dayOfWeek; 
+    this.isFuture = this.i > this.dayOfWeek;
   }
 
   onSelectionChange($event: any, quotaTopic?: quotaTopic){
@@ -34,6 +34,11 @@ export class ValueSelectorComponent implements OnInit {
     }
 
     this.changeEvent.emit($event);
+  }
+
+  onPlanCompletion(){
+    this.element.daysValues[this.i].completed += this.element.daysValues[this.i].planned;
+    this.element.daysValues[this.i].planned = 0;
   }
 
 }

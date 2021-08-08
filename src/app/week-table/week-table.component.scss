@@ -56,7 +56,7 @@ table {
     } 
 
     .today-header {
-      width: 150px;
+      width: 200px;
       label{
         font-weight: 600;
         color: black;
@@ -66,14 +66,18 @@ table {
       }
 
       .sub-headers {
+        :first-child{
+          width: 80px;
+        }
         margin-top: 10px;
         label{
           padding: 0;
           display: inline-flex;
-          width: 60px;
+          
           color: #919bd0  ;
           background-color: transparent;
         }
+
       }
     }
 
