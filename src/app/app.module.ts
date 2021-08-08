@@ -17,6 +17,7 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { QuotaPercentPipe } from './quota-percent.pipe'
 import { SaveAndLoadService } from './services/save-and-load.service';
 import { IpcService } from './services/ipc.service';
+import { ValueSelectorComponent } from './value-selector/value-selector.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { IpcService } from './services/ipc.service';
     AppComponent,
     WeekTableComponent,
     QuotaFractionPipe,
-    QuotaPercentPipe
+    QuotaPercentPipe,
+    ValueSelectorComponent
   ],
   imports: [
     BrowserModule,
