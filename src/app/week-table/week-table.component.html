@@ -19,7 +19,7 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <span class="progress-section">
-        <mat-progress-bar  [ngClass]="(element | quotaPercent) > 99 ? 'green-progress' : 'red-progress'" mode="determinate" value="{{ element | quotaPercent }}"></mat-progress-bar>
+        <mat-progress-bar [ngClass]="(element | quotaPercent) > 99 ? 'green-progress' : 'red-progress'" mode="buffer" value="{{ element | quotaPercent }}" [bufferValue]="element | quotaPlanPercent"></mat-progress-bar>
       </span>
     </td>
   </ng-container>

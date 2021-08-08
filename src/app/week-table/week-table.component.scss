@@ -74,7 +74,7 @@ table {
           padding: 0;
           display: inline-flex;
           
-          color: #919bd0  ;
+          color: #919bd0;
           background-color: transparent;
         }
 
@@ -89,7 +89,22 @@ table {
       }
       mat-progress-bar{
         margin: 10px;
+        border: 1px solid #919bd0;
       }
+
+    }
+
+    ::ng-deep .mat-progress-bar-background{
+      animation: none!important;
+      background-color: white;
+    }
+
+    ::ng-deep .mat-progress-bar-buffer{
+      background-color: #cbd0e9;
+    }
+
+    ::ng-deep rect {
+      display: none!important;
     }
 
   }
