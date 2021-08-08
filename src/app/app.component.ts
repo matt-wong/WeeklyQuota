@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CalendarService } from './services/calendar.service';
 import { IpcService } from './services/ipc.service';
 import { SaveAndLoadService } from './services/save-and-load.service';
-import { quotaTopic } from './week-table/week-table.model';
+import { dayValues, quotaTopic, zeroValDay } from './week-table/week-table.model';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +30,12 @@ export class AppComponent implements OnInit {
   
     setTimeout(() => {
       this.loadQuotas([]);
+
+      if (this.quotas?.length === 0) {
+        this.quotas = this.saveLoadService.loadDefaultQuotas();
+      }
     }, 3000);
+
   }
 
   loadQuotas(newQ: quotaTopic[]){
@@ -46,8 +51,9 @@ export class AppComponent implements OnInit {
   }
 
   onClear() {
+
     this.quotas.forEach(quota => {
-      quota.daysValues = [0,0,0,0,0,0,0];
+      quota.daysValues = Array(7).fill(zeroValDay);
     });
   }
 }

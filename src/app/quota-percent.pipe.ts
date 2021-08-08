@@ -10,7 +10,7 @@ export class QuotaPercentPipe implements PipeTransform {
   transform(quota: quotaTopic, ...args: unknown[]): number {
     let sum : number = 0;
     quota.daysValues.forEach(val => {
-      sum = sum + val;
+      sum = sum + val.completed;
     });
 
     return sum / quota.quota * 100;

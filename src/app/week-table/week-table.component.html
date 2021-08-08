@@ -34,10 +34,10 @@
   </ng-container>
 
   <ng-container *ngFor='let defName of defNames; let i = index' matColumnDef="{{defName}}">
-    <th mat-header-cell *matHeaderCellDef> {{ dayDisplayNames[i] }} </th>
+    <th mat-header-cell *matHeaderCellDef  [ngClass]="{'today-header': i === todayIndex}"> {{ dayDisplayNames[i] }} </th>
     <td mat-cell *matCellDef="let element">
       <mat-form-field>
-        <mat-select disableRipple [(value)]="element.daysValues[i]" (selectionChange)='onSelectionChange($event, element)'>
+        <mat-select disableRipple [(value)]="element.daysValues[i].completed" (selectionChange)='onSelectionChange($event, element)'>
           <mat-option [value]=0>0</mat-option>
           <mat-option [value]=0.5>0.5</mat-option>
           <mat-option [value]=1>1</mat-option>
