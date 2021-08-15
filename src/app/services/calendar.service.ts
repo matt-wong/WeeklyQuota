@@ -9,7 +9,9 @@ export class CalendarService {
 
   getDayOfWeek(): number{
     const now = new Date(Date.now());
-    return now.getDay() - 1; // to make 0 monday;
+    let dayOfWeek = now.getDay() - 1; // to make 0 monday;
+    dayOfWeek = dayOfWeek === -1 ? 6 : dayOfWeek; // to make 6 sunday;
+    return dayOfWeek; 
   }
 
   getWeekProgress(): number {
