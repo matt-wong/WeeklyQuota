@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   onClear() {
 
     this.quotas.forEach(quota => {
-      quota.daysValues = Array(7).fill(zeroValDay);
+      quota.daysValues = JSON.parse(JSON.stringify(Array(7).fill(zeroValDay)));
     });
   }
 }
