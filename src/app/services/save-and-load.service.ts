@@ -59,7 +59,7 @@ export class SaveAndLoadService {
       { name: 'New Thing', daysValues: this.zeroValWeek(), icon: 'new_releases', quota: 1.5 },
       { name: 'House Maintainance', daysValues: this.zeroValWeek(), icon: 'home', quota: 3 },
       { name: 'Hobby Session', daysValues: this.zeroValWeek(), icon: 'brush', quota: 5 },
-      { name: 'Meditate', daysValues: this.zeroValWeek(), icon: 'airline_seat_recline_extra', quota: 4 }
+      { name: 'Meditate', daysValues: this.zeroValWeek(), icon: 'airline_seat_recline_extra', quota: 5 }
     )
     return quotas;
   }

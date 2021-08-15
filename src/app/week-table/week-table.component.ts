@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CalendarService } from 'release-builds/WeeklyQuota-win32-ia32/resources/app/src/app/services/calendar.service';
+import { CalendarService } from '../services/calendar.service';
 import { QuotaPercentPipe } from '../quota-percent.pipe';
 import { SaveAndLoadService } from '../services/save-and-load.service';
 import { quotaTopic } from './week-table.model';
@@ -11,6 +11,8 @@ import { quotaTopic } from './week-table.model';
   styleUrls: ['./week-table.component.scss']
 })
 export class WeekTableComponent implements OnInit {
+
+  // TODO: Select past dates (Planned -> Done.)
 
   @Input() quotas: quotaTopic[] = [];
   // @Output() valueChange: EventEmitter<boolean> = new EventEmitter;
