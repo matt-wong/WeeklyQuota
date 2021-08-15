@@ -12,6 +12,10 @@ import { dayValues, quotaTopic, zeroValDay } from './week-table/week-table.model
 })
 export class AppComponent implements OnInit {
 
+  // TODO: Logo - application icon and header
+
+  // TODO: Force Import / Export from JSON
+
   title = 'weeklyQuota';
   quotas: quotaTopic[];
 

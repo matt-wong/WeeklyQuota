@@ -14,6 +14,10 @@ export class WeekTableComponent implements OnInit {
 
   // TODO: Select past dates (Planned -> Done.)
 
+  // TODO: Adjustable Quotas
+
+  // TODO: Editable Quota Topics
+
   @Input() quotas: quotaTopic[] = [];
   // @Output() valueChange: EventEmitter<boolean> = new EventEmitter;
 
