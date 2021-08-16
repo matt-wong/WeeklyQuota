@@ -20,6 +20,7 @@ import { SaveAndLoadService } from './services/save-and-load.service';
 import { IpcService } from './services/ipc.service';
 import { ValueSelectorComponent } from './value-selector/value-selector.component';
 import { QuotaPlanPercentPipe } from './quota-plan-percent.pipe';
+import { ImportExportTextComponent } from './import-export-text/import-export-text.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { QuotaPlanPercentPipe } from './quota-plan-percent.pipe';
     QuotaFractionPipe,
     QuotaPercentPipe,
     ValueSelectorComponent,
-    QuotaPlanPercentPipe
+    QuotaPlanPercentPipe,
+    ImportExportTextComponent
   ],
   imports: [
     BrowserModule,

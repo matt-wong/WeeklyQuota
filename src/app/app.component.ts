@@ -55,9 +55,12 @@ export class AppComponent implements OnInit {
   }
 
   onClear() {
-
     this.quotas.forEach(quota => {
       quota.daysValues = JSON.parse(JSON.stringify(Array(7).fill(zeroValDay)));
     });
+  }
+
+  onLoadFromImport(event: quotaTopic[]) {
+    this.quotas = event;
   }
 }
