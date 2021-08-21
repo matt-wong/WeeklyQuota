@@ -14,10 +14,9 @@ export class AppComponent implements OnInit {
 
   // TODO: Logo - application icon and header
 
-  // TODO: Force Import / Export from JSON
-
-  title = 'weeklyQuota';
-  quotas: quotaTopic[];
+  public showAdminSettings = false;
+  public title = 'weeklyQuota';
+  public quotas: quotaTopic[];
 
   constructor(private saveLoadService: SaveAndLoadService, private calService: CalendarService, private _ipc: IpcService) {
     this.quotas = [];
