@@ -42,6 +42,12 @@
         <label>Done.</label>
         <label>Plan.</label>
       </div>
+      <div class="sub-headers" *ngIf="i<todayIndex">
+        <label>Done.</label>
+      </div>
+      <div class="sub-headers" *ngIf="i>todayIndex">
+        <label>Plan.</label>
+      </div>
     </th>
     <td mat-cell *matCellDef="let element">
       <app-value-selector (changeEvent)='onSelectionChange(element)' [element]='element' [i]='i'></app-value-selector>

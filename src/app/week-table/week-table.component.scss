@@ -64,23 +64,23 @@ table {
         padding: 5px;
         border-radius: 5px;
       }
-
-      .sub-headers {
-        :first-child{
-          width: 80px;
-        }
-        margin-top: 10px;
-        label{
-          padding: 0;
-          display: inline-flex;
-          
-          color: #919bd0;
-          background-color: transparent;
-        }
-
-      }
     }
 
+    .sub-headers {
+      :first-child{
+        width: 80px;
+      }
+      margin-top: 10px;
+      label{
+        padding: 0;
+        display: inline-flex;
+        
+        color: #919bd0;
+        background-color: transparent;
+      }
+
+    }
+    
     .progress-section{
       display: flex;
       align-items: center;
