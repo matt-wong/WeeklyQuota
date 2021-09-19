@@ -36,7 +36,7 @@
   <ng-container *ngFor="let defName of defNames; let i = index" matColumnDef="{{defName}}">
     <th mat-header-cell *matHeaderCellDef  [ngClass]="headerClassFromIndex(i)">
         <label (click) = "selectedDayIndex = i">
-          {{ dayDisplayNames[i] }} 
+          {{ dayDisplayNames[i] + ' ' + dateNumbers[i]}} 
         </label>
       <div class="sub-headers" *ngIf="i === todayIndex || i === selectedDayIndex">
         <label>Done.</label>
