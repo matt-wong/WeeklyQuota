@@ -14,6 +14,7 @@ export class ValueSelectorComponent implements OnInit {
 
   @Input() element: quotaTopic = {name:'dummy', icon: 'dummy', weekComment: '', daysValues: [], quota: 1};
   @Input() i: number = 0;
+  @Input() isSelected = false;
 
   @Output() changeEvent: EventEmitter<void> = new EventEmitter();
 

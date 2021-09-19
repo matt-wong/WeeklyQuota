@@ -5,10 +5,10 @@
         <mat-option *ngIf="addedCompleteValue > 0" [value]="addedCompleteValue">{{addedCompleteValue}}</mat-option>
     </mat-select>
 </mat-form-field>
-<button *ngIf="this.i === this.dayOfWeek" mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="onPlanCompletion()">
+<button *ngIf="this.i === this.dayOfWeek || this.isSelected" mat-icon-button aria-label="Complete plan" (click)="onPlanCompletion()">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
-<mat-form-field [ngClass]="{'future-select': isFuture}" *ngIf='isFuture || this.i === this.dayOfWeek'>
+<mat-form-field [ngClass]="{'future-select': isFuture}" *ngIf='isFuture || this.i === this.dayOfWeek || this.isSelected'>
     <mat-select  disableRipple [(value)]="element.daysValues[i].planned"
         (selectionChange)='onSelectionChange($event, element)'>
         <mat-option *ngFor="let valOpt of valueOptions" [value]=valOpt>{{valOpt}}</mat-option>

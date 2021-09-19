@@ -26,6 +26,7 @@ export class WeekTableComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'status', 'statusBar', ...this.defNames, 'comment'];
   todayIndex = 0;
+  selectedDayIndex = -1;
 
   constructor(
     private snackBarService: MatSnackBar,
