@@ -39,6 +39,8 @@ export class WeekTableComponent implements OnInit {
   }
 
   onSelectionChange(quotaTopic: quotaTopic){
+    console.log(this.selectedDayIndex);
+
     this.saveService.saveData(this.quotas); 
 
     if (this.quotaPercentPipe.transform(quotaTopic) >= 100){
