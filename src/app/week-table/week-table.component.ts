@@ -23,6 +23,7 @@ export class WeekTableComponent implements OnInit {
 
   defNames: string[] = ['day0', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6'];
   dayDisplayNames: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  dateNumbers: number[] = new Array<number>(6);
 
   displayedColumns: string[] = ['name', 'status', 'statusBar', ...this.defNames, 'comment'];
   todayIndex = 0;
@@ -36,6 +37,13 @@ export class WeekTableComponent implements OnInit {
     ) {this.todayIndex = calenderService.getDayOfWeek()}
 
   ngOnInit(): void {
+
+    this.dateNumbers[this.todayIndex] = this.calenderService.getDayOfMonth();
+    for (let i = 0; i <= 6; i++){
+      this.dateNumbers[i] = this.calenderService.getDayOfMonth(i - this.todayIndex);
+    }
+
+    console.log(JSON.stringify(this.dateNumbers));
   }
 
   public headerClassFromIndex(i: number): string {

@@ -17,5 +17,18 @@ export class CalendarService {
   getWeekProgress(): number {
     return ((this.getDayOfWeek() + 1) / 7) * 100;
   }
+  
+  getDayOfMonth(offset? : number): number {
+    let now = new Date(Date.now());
+    if (offset){
+      console.log(offset);
+      var followingDay = new Date(now.getTime() + 86400000 * offset); // + 1 day in ms
+      followingDay.toLocaleDateString();
+      return followingDay.getDate();
+    }
+
+    return now.getDate();
+  }
+
 
 }
