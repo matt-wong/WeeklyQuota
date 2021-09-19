@@ -38,6 +38,16 @@ export class WeekTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public headerClassFromIndex(i: number): string {
+    if (i === this.todayIndex){
+      return 'today-header';
+    }else if (i === this.selectedDayIndex){
+      return 'selected-day-header'
+    }else{
+      return ''
+    }
+  }
+
   onSelectionChange(quotaTopic: quotaTopic){
     console.log(this.selectedDayIndex);
 

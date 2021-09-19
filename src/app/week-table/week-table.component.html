@@ -34,7 +34,7 @@
   </ng-container>
 
   <ng-container *ngFor="let defName of defNames; let i = index" matColumnDef="{{defName}}">
-    <th mat-header-cell *matHeaderCellDef  [ngClass]="{'today-header': i === todayIndex || i === selectedDayIndex}">
+    <th mat-header-cell *matHeaderCellDef  [ngClass]="headerClassFromIndex(i)">
         <label (click) = "selectedDayIndex = i">
           {{ dayDisplayNames[i] }} 
         </label>

@@ -66,6 +66,18 @@ table {
       }
     }
 
+    .selected-day-header{
+      width: 200px;
+      & > label{
+          color: black;
+          border: 1px solid grey;
+          padding: 5px;
+          border-radius: 5px;
+        }
+      
+    }
+
+
     .sub-headers {
       :first-child{
         width: 80px;
