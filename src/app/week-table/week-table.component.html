@@ -45,7 +45,7 @@
       <div class="sub-headers" *ngIf="i<todayIndex && i !== selectedDayIndex">
         <label>Done.</label>
       </div>
-      <div class="sub-headers" *ngIf="i>todayIndex">
+      <div class="sub-headers" *ngIf="i>todayIndex && i !== selectedDayIndex">
         <label>Plan.</label>
       </div>
     </th>

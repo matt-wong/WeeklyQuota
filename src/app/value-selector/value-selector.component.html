@@ -1,4 +1,4 @@
-<mat-form-field [ngClass]="{'future-select': isFuture}" *ngIf='!isFuture || this.i === this.dayOfWeek'>
+<mat-form-field [ngClass]="{'future-select': isFuture}" *ngIf='!isFuture || this.i === this.dayOfWeek || this.isSelected'>
     <mat-select disableRipple [(value)]="element.daysValues[i].completed"
         (selectionChange)='onSelectionChange($event, element)'>
         <mat-option *ngFor="let valOpt of valueOptions" [value]=valOpt>{{valOpt}}</mat-option>
