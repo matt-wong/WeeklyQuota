@@ -49,6 +49,8 @@ export class ValueSelectorComponent implements OnInit {
     setTimeout(() => {
       this.element.daysValues[this.i].completed += this.element.daysValues[this.i].planned;
       this.element.daysValues[this.i].planned = 0;
+
+      this.changeEvent.emit();
     })
   }
 

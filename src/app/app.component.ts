@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
     this.quotas = this.quotas.slice();
   }
 
-  onSave() { //TODO: auto save on changes
+  onSave() {
     this.saveLoadService.saveData(this.quotas);
   }
 
