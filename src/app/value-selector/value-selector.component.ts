@@ -47,8 +47,13 @@ export class ValueSelectorComponent implements OnInit {
     }
 
     setTimeout(() => {
-      this.element.daysValues[this.i].completed += this.element.daysValues[this.i].planned;
-      this.element.daysValues[this.i].planned = 0;
+      if (this.element.daysValues[this.i].planned >= 1) {
+        this.element.daysValues[this.i].completed += 1;
+        this.element.daysValues[this.i].planned = Math.max(0, this.element.daysValues[this.i].planned - 1);
+      } else {
+        this.element.daysValues[this.i].completed += this.element.daysValues[this.i].planned;
+        this.element.daysValues[this.i].planned = 0;
+      }
 
       this.changeEvent.emit();
     })
