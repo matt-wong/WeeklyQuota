@@ -13,6 +13,7 @@ function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     maximizable: true,
+    icon: path.join(__dirname, './src/assets/worker_113306.ico'),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
