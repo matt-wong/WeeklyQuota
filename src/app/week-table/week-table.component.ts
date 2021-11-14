@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { QuotaPercentPipe } from '../pipes/quota-percent.pipe';
+import { StatusFromItemPipe } from '../pipes/status-from-item.pipe';
 import { CalendarService } from '../services/calendar.service';
-import { QuotaPercentPipe } from '../quota-percent.pipe';
 import { SaveAndLoadService } from '../services/save-and-load.service';
 import { quotaTopic } from './week-table.model';
 
@@ -33,6 +34,7 @@ export class WeekTableComponent implements OnInit {
     private snackBarService: MatSnackBar,
     private saveService: SaveAndLoadService,
     private quotaPercentPipe: QuotaPercentPipe,
+    private statusFromItemPipe: StatusFromItemPipe,
     private calenderService: CalendarService
     ) {this.todayIndex = calenderService.getDayOfWeek()}
 
@@ -64,6 +66,10 @@ export class WeekTableComponent implements OnInit {
     if (this.quotaPercentPipe.transform(quotaTopic) >= 100){
       this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', {duration: 4000});
     }
+
+    this.quotas.forEach(element => {
+      console.log(this.statusFromItemPipe.transform(element, 3))
+    });
 
     //TODO: Full week Complete! toast
   }
