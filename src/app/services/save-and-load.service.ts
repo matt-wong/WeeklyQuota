@@ -32,7 +32,7 @@ export class SaveAndLoadService {
         const dataNames : string[]= JSON.parse(this.cookieService.get('dataNames'));
         const arrayOfLoaded:quotaTopic[] = [];
         
-        dataNames.forEach((element, key) => {
+        dataNames.forEach((element) => {
           if (this.cookieService.get('data-' + element)){
             const item = JSON.parse(this.cookieService.get('data-' + element))
             arrayOfLoaded.push(item);
@@ -87,10 +87,7 @@ export class SaveAndLoadService {
     });
 
     this.cookieService.set('dataNames', JSON.stringify(dataNames), date, undefined, undefined, false, "Lax");
-
-    console.log('After cookie set -string');
     this.ipcService.send('save', JSON.stringify(quotaData));
-    console.log(quotaData);
   }
 
 }
