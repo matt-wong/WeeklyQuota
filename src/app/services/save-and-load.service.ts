@@ -26,9 +26,19 @@ export class SaveAndLoadService {
   }
 
   loadDataCookies(): quotaTopic[] {
-    if (this.cookieService.get('data')) {
+
+    if (this.cookieService.get('dataNames')) {
       try {
-        return JSON.parse(this.cookieService.get('data'));
+        const dataNames : string[]= JSON.parse(this.cookieService.get('dataNames'));
+        const arrayOfLoaded:quotaTopic[] = [];
+        
+        dataNames.forEach((element, key) => {
+          if (this.cookieService.get('data-' + element)){
+            const item = JSON.parse(this.cookieService.get('data-' + element))
+            arrayOfLoaded.push(item);
+          }
+        })
+        return arrayOfLoaded;
       } catch (e) {
        return this.loadDefaultQuotas();
       }
@@ -70,8 +80,15 @@ export class SaveAndLoadService {
 
     // add a long expiry - year
     date.setDate(date.getDate() + 365);
-    this.cookieService.set('data', JSON.stringify(quotaData), date);
+    const dataNames = quotaData.map((element) => {return element.name});
 
+    quotaData.forEach(element => {
+      this.cookieService.set('data-' + element.name, JSON.stringify(element), date, undefined, undefined, false, "Lax");
+    });
+
+    this.cookieService.set('dataNames', JSON.stringify(dataNames), date, undefined, undefined, false, "Lax");
+
+    console.log('After cookie set -string');
     this.ipcService.send('save', JSON.stringify(quotaData));
     console.log(quotaData);
   }

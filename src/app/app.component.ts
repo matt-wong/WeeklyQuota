@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       this.loadQuotas([]);
 
       if (this.quotas?.length === 0) {
-        this.quotas = this.saveLoadService.loadDefaultQuotas();
+        this.quotas = this.saveLoadService.loadDataCookies();
       }
     }, 3000);
 
