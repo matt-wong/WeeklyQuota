@@ -1,3 +1,4 @@
+<a (click) = 'onCheckWeather()'>weather</a>
 <table mat-table [dataSource]="quotas" class="mat-elevation-z8">
 
   <!-- Name Column -->
@@ -38,7 +39,9 @@
         <label (click) = "selectedDayIndex = i">
           {{ dayDisplayNames[i] + ' ' + dateNumbers[i]}} 
         </label>
-        <a (click) = 'onCheckWeather(i)'>weather</a>
+        <div *ngIf='dayWeather[i]'>
+          <pre>{{dayWeather[i] | json}}</pre>
+        </div>
       <div class="sub-headers" *ngIf="i === todayIndex || i === selectedDayIndex">
         <label>Done.</label>
         <label>Plan.</label>

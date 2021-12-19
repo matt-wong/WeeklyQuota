@@ -15,16 +15,14 @@ export class WeatherService {
   private latitude = 51.0447;
 
   getWeeksWeather() : Observable<dayWeather[]> {
-    return this.http.get<weatherResponse>('https://www.7timer.info/bin/astro.php?lon=-114.0719&lat=51.0447&ac=0&unit=metric&output=json&tzshift=0').pipe(
+    return this.http.get<weatherResponse>('https://www.7timer.info/bin/civillight.php?lon=-114.0719&lat=51.0447&ac=0&unit=metric&output=json&tzshift=0').pipe(
       map((a: weatherResponse) => {
       console.log(a.init);
-      a.dataseries.forEach(momentData => {
-        console.log(momentData.temp2m);
+      a.dataseries.forEach(day => {
+        day.day = day.date % 100; // example 20211219 is december 19
       });
 
-      const dayWeather1 : dayWeather = {lowTemp: -5, highTemp: 34}
-
-      return [dayWeather1];
+      return a.dataseries;
     }))
   }
 
