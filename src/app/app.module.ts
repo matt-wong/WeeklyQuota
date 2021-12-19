@@ -23,6 +23,7 @@ import { QuotaPlanPercentPipe } from './pipes/quota-plan-percent.pipe';
 import { QuotaFractionPipe } from './pipes/quota-fraction.pipe';
 import { StatusFromItemPipe } from './pipes/status-from-item.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,9 +49,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatProgressBarModule,
     MatInputModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule
   ],
-  providers: [QuotaPercentPipe, SaveAndLoadService, IpcService, StatusFromItemPipe],
+  providers: [QuotaPercentPipe, SaveAndLoadService, IpcService, StatusFromItemPipe, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

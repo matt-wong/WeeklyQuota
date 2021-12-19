@@ -38,6 +38,7 @@
         <label (click) = "selectedDayIndex = i">
           {{ dayDisplayNames[i] + ' ' + dateNumbers[i]}} 
         </label>
+        <a (click) = 'onCheckWeather(i)'>weather</a>
       <div class="sub-headers" *ngIf="i === todayIndex || i === selectedDayIndex">
         <label>Done.</label>
         <label>Plan.</label>

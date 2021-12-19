@@ -4,6 +4,8 @@ import { QuotaPercentPipe } from '../pipes/quota-percent.pipe';
 import { StatusFromItemPipe } from '../pipes/status-from-item.pipe';
 import { CalendarService } from '../services/calendar.service';
 import { SaveAndLoadService } from '../services/save-and-load.service';
+import { WeatherService } from '../services/weather.service';
+import { dayWeather, weatherResponse } from '../services/weather.service.model';
 import { quotaTopic } from './week-table.model';
 
 @Component({
@@ -24,6 +26,7 @@ export class WeekTableComponent implements OnInit {
 
   defNames: string[] = ['day0', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6'];
   dayDisplayNames: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  dayWeather: dayWeather[] = []; 
   dateNumbers: number[] = new Array<number>(6);
 
   displayedColumns: string[] = ['name', 'status', 'statusBar', ...this.defNames, 'comment'];
@@ -35,7 +38,8 @@ export class WeekTableComponent implements OnInit {
     private saveService: SaveAndLoadService,
     private quotaPercentPipe: QuotaPercentPipe,
     private statusFromItemPipe: StatusFromItemPipe,
-    private calenderService: CalendarService
+    private calenderService: CalendarService,
+    private weatherService: WeatherService
     ) {this.todayIndex = calenderService.getDayOfWeek()}
 
   ngOnInit(): void {
@@ -72,6 +76,14 @@ export class WeekTableComponent implements OnInit {
     });
 
     //TODO: Full week Complete! toast
+  }
+
+  onCheckWeather(i : number){
+    console.log(this.dayWeather);
+
+    this.weatherService.getWeeksWeather().subscribe((dw : dayWeather[]) => {
+      this.dayWeather = dw;
+    })
   }
 
 }
