@@ -24,6 +24,7 @@ import { QuotaFractionPipe } from './pipes/quota-fraction.pipe';
 import { StatusFromItemPipe } from './pipes/status-from-item.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { WeatherDisplayComponent } from './weather-display/weather-display.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ValueSelectorComponent,
     QuotaPlanPercentPipe,
     ImportExportTextComponent,
-    StatusFromItemPipe
+    StatusFromItemPipe,
+    WeatherDisplayComponent
   ],
   imports: [
     BrowserModule,

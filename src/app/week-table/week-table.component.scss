@@ -8,6 +8,10 @@ table {
       width: 150px;
     }
 
+    .mat-header-row{
+      height: 140px;
+    }
+
     .mat-column-status{
       width: 50px;
     }
@@ -63,20 +67,25 @@ table {
         background-color: #919bd0;
         padding: 5px;
         border-radius: 5px;
+        width: fit-content;
       }
     }
 
     .selected-day-header{
       width: 200px;
-      & > label{
+      .day-label{
           color: black;
           border: 1px solid grey;
           padding: 5px;
           border-radius: 5px;
+          width: fit-content;
         }
-      
     }
 
+    .day-header {
+      display: flex;
+      flex-direction: column;
+    }
 
     .sub-headers {
       :first-child{

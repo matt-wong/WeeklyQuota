@@ -35,22 +35,22 @@
   </ng-container>
 
   <ng-container *ngFor="let defName of defNames; let i = index" matColumnDef="{{defName}}">
-    <th mat-header-cell *matHeaderCellDef  [ngClass]="headerClassFromIndex(i)">
-        <label (click) = "selectedDayIndex = i">
-          {{ dayDisplayNames[i] + ' ' + dateNumbers[i]}} 
+    <th mat-header-cell *matHeaderCellDef [ngClass]="headerClassFromIndex(i)">
+      <div class="day-header">
+        <label class="day-label" (click)="selectedDayIndex = i">
+          {{ dayDisplayNames[i] + ' ' + dateNumbers[i]}}
         </label>
-        <div *ngIf='dayWeather[i]'>
-          <pre>{{dayWeather[i] | json}}</pre>
+        <app-weather-display [dayWeather]='dayWeather[i]'></app-weather-display>
+        <div class="sub-headers" *ngIf="i === todayIndex || i === selectedDayIndex">
+          <label>Done.</label>
+          <label>Plan.</label>
         </div>
-      <div class="sub-headers" *ngIf="i === todayIndex || i === selectedDayIndex">
-        <label>Done.</label>
-        <label>Plan.</label>
-      </div>
-      <div class="sub-headers" *ngIf="i<todayIndex && i !== selectedDayIndex">
-        <label>Done.</label>
-      </div>
-      <div class="sub-headers" *ngIf="i>todayIndex && i !== selectedDayIndex">
-        <label>Plan.</label>
+        <div class="sub-headers" *ngIf="i<todayIndex && i !== selectedDayIndex">
+          <label>Done.</label>
+        </div>
+        <div class="sub-headers" *ngIf="i>todayIndex && i !== selectedDayIndex">
+          <label>Plan.</label>
+        </div>
       </div>
     </th>
     <td mat-cell *matCellDef="let element">

@@ -85,7 +85,7 @@ export class WeekTableComponent implements OnInit {
     this.weatherService.getWeeksWeather().subscribe((dw : dayWeather[]) => {
       dw.forEach((wi: dayWeather) => {
         const dayOfWeekIndex = this.dateNumbers.findIndex((date)=>{return date === wi.day});
-        if (dayOfWeekIndex > 0){
+        if (dayOfWeekIndex >= 0){
           console.log(dayOfWeekIndex);
           this.dayWeather[dayOfWeekIndex] = wi;
         }
