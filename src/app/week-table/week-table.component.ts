@@ -50,6 +50,8 @@ export class WeekTableComponent implements OnInit {
     }
 
     console.log(JSON.stringify(this.dateNumbers));
+
+    this.onCheckWeather();
   }
 
   public headerClassFromIndex(i: number): string {
