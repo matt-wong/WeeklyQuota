@@ -4,6 +4,8 @@ import { QuotaPercentPipe } from '../pipes/quota-percent.pipe';
 import { StatusFromItemPipe } from '../pipes/status-from-item.pipe';
 import { CalendarService } from '../services/calendar.service';
 import { SaveAndLoadService } from '../services/save-and-load.service';
+import { WeatherService } from '../services/weather.service';
+import { dayWeather } from '../services/weather.service.model';
 import { quotaTopic } from './week-table.model';
 
 @Component({
@@ -24,6 +26,7 @@ export class WeekTableComponent implements OnInit {
 
   defNames: string[] = ['day0', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6'];
   dayDisplayNames: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  dayWeather: Array<dayWeather | undefined> = [undefined, undefined, undefined, undefined, undefined, undefined, undefined];
   dateNumbers: number[] = new Array<number>(6);
 
   displayedColumns: string[] = ['name', 'status', 'statusBar', ...this.defNames, 'comment'];
@@ -35,7 +38,8 @@ export class WeekTableComponent implements OnInit {
     private saveService: SaveAndLoadService,
     private quotaPercentPipe: QuotaPercentPipe,
     private statusFromItemPipe: StatusFromItemPipe,
-    private calenderService: CalendarService
+    private calenderService: CalendarService,
+    private weatherService: WeatherService
     ) {this.todayIndex = calenderService.getDayOfWeek()}
 
   ngOnInit(): void {
@@ -46,6 +50,8 @@ export class WeekTableComponent implements OnInit {
     }
 
     console.log(JSON.stringify(this.dateNumbers));
+
+    this.onCheckWeather();
   }
 
   public headerClassFromIndex(i: number): string {
@@ -72,6 +78,21 @@ export class WeekTableComponent implements OnInit {
     });
 
     //TODO: Full week Complete! toast
+  }
+
+  onCheckWeather(){
+    console.log(this.dayWeather);
+    console.log(this.dateNumbers);
+
+    this.weatherService.getWeeksWeather().subscribe((dw : dayWeather[]) => {
+      dw.forEach((wi: dayWeather) => {
+        const dayOfWeekIndex = this.dateNumbers.findIndex((date)=>{return date === wi.day});
+        if (dayOfWeekIndex >= 0){
+          console.log(dayOfWeekIndex);
+          this.dayWeather[dayOfWeekIndex] = wi;
+        }
+      });
+    })
   }
 
 }
