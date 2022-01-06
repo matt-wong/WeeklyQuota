@@ -3,7 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from '../services/calendar.service';
-import { quotaTopic } from '../week-table/week-table.model';
+import { quotaTopic, zeroValDay } from '../week-table/week-table.model';
 
 @Component({
   selector: 'app-value-selector',
@@ -12,7 +12,7 @@ import { quotaTopic } from '../week-table/week-table.model';
 })
 export class ValueSelectorComponent implements OnInit {
 
-  @Input() element: quotaTopic = {name:'dummy', icon: 'dummy', weekComment: '', daysValues: [], quota: 1};
+  @Input() element: quotaTopic = {name:'dummy', icon: 'dummy', weekComment: '', daysValues: JSON.parse(JSON.stringify(Array(7).fill(zeroValDay))), quota: 1};
   @Input() i: number = 0;
   @Input() isSelected = false;
 

@@ -30,5 +30,5 @@ describe('WeekTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //TODO: Matt! Make some test, idiot!
+  //TODO: Matt! Make some tests, idiot!
 });

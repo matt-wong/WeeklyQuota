@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { IpcService } from './services/ipc.service';
+import { SaveAndLoadService } from './services/save-and-load.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [SaveAndLoadService, IpcService]
     }).compileComponents();
   });
 
@@ -26,10 +29,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('weeklyQuota');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('weeklyQuota app is running!');
-  });
+  //TODO: Matt! Make some tests, idiot!
 });

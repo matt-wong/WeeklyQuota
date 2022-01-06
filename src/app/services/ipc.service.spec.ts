@@ -6,11 +6,15 @@ describe('IpcService', () => {
   let service: IpcService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [IpcService]
+    });
     service = TestBed.inject(IpcService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  //TODO: Matt! Make some tests, idiot!
 });
