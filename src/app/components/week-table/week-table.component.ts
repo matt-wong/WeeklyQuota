@@ -40,37 +40,32 @@ export class WeekTableComponent implements OnInit {
     private statusFromItemPipe: StatusFromItemPipe,
     private calenderService: CalendarService,
     private weatherService: WeatherService
-    ) {this.todayIndex = calenderService.getDayOfWeek()}
+  ) { this.todayIndex = calenderService.getDayOfWeek() }
 
   ngOnInit(): void {
-
     this.dateNumbers[this.todayIndex] = this.calenderService.getDayOfMonth();
-    for (let i = 0; i <= 6; i++){
+    for (let i = 0; i <= 6; i++) {
       this.dateNumbers[i] = this.calenderService.getDayOfMonth(i - this.todayIndex);
     }
-
-    console.log(JSON.stringify(this.dateNumbers));
 
     this.onCheckWeather();
   }
 
   public headerClassFromIndex(i: number): string {
-    if (i === this.todayIndex){
+    if (i === this.todayIndex) {
       return 'today-header';
-    }else if (i === this.selectedDayIndex){
+    } else if (i === this.selectedDayIndex) {
       return 'selected-day-header'
-    }else{
+    } else {
       return ''
     }
   }
 
-  onSelectionChange(quotaTopic: quotaTopic){
-    console.log(this.selectedDayIndex);
+  onSelectionChange(quotaTopic: quotaTopic) {
+    this.saveService.saveData(this.quotas);
 
-    this.saveService.saveData(this.quotas); 
-
-    if (this.quotaPercentPipe.transform(quotaTopic) >= 100){
-      this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', {duration: 4000});
+    if (this.quotaPercentPipe.transform(quotaTopic) >= 100) {
+      this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', { duration: 4000 });
     }
 
     this.quotas.forEach(element => {
@@ -80,15 +75,12 @@ export class WeekTableComponent implements OnInit {
     //TODO: Full week Complete! toast
   }
 
-  onCheckWeather(){
-    console.log(this.dayWeather);
-    console.log(this.dateNumbers);
-
-    this.weatherService.getWeeksWeather().subscribe((dw : dayWeather[]) => {
+  onCheckWeather() {
+    this.weatherService.getWeeksWeather().subscribe((dw: dayWeather[]) => {
       dw.forEach((wi: dayWeather) => {
-        const dayOfWeekIndex = this.dateNumbers.findIndex((date)=>{return date === wi.day});
-        if (dayOfWeekIndex >= 0){
-          console.log(dayOfWeekIndex);
+        const dayOfWeekIndex = this.dateNumbers.findIndex((date) => { return date === wi.day });
+        if (dayOfWeekIndex >= 0) {
+          // console.log(dayOfWeekIndex);
           this.dayWeather[dayOfWeekIndex] = wi;
         }
       });
