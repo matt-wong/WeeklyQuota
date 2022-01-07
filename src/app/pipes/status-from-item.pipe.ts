@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { quotaTopic } from '../week-table/week-table.model';
+import { quotaTopic } from '../components/week-table/week-table.model';
 import { QuotaPercentPipe } from './quota-percent.pipe';
 
 export enum QuotaStatus{

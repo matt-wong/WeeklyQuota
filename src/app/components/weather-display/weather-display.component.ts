@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { dayWeather } from '../services/weather.service.model';
+import { dayWeather } from '../../services/weather.service.model';
 
 @Component({
   selector: 'app-weather-display',

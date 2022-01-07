@@ -1,9 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { QuotaPercentPipe } from '../pipes/quota-percent.pipe';
-import { StatusFromItemPipe } from '../pipes/status-from-item.pipe';
-import { IpcService } from '../services/ipc.service';
+import { QuotaPercentPipe } from '../../pipes/quota-percent.pipe';
+import { StatusFromItemPipe } from '../../pipes/status-from-item.pipe';
+import { IpcService } from '../../services/ipc.service';
 
 import { WeekTableComponent } from './week-table.component';
 

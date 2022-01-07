@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { QuotaPercentPipe } from '../pipes/quota-percent.pipe';
-import { StatusFromItemPipe } from '../pipes/status-from-item.pipe';
-import { CalendarService } from '../services/calendar.service';
-import { SaveAndLoadService } from '../services/save-and-load.service';
-import { WeatherService } from '../services/weather.service';
-import { dayWeather } from '../services/weather.service.model';
+import { QuotaPercentPipe } from '../../pipes/quota-percent.pipe';
+import { StatusFromItemPipe } from '../../pipes/status-from-item.pipe';
+import { CalendarService } from '../../services/calendar.service';
+import { SaveAndLoadService } from '../../services/save-and-load.service';
+import { WeatherService } from '../../services/weather.service';
+import { dayWeather } from '../../services/weather.service.model';
 import { quotaTopic } from './week-table.model';
 
 @Component({

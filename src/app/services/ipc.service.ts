@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { IpcRenderer } from 'electron';
 import { Subject } from 'rxjs';
-import { quotaTopic } from '../week-table/week-table.model';
+import { quotaTopic } from '../components/week-table/week-table.model';
 
 @Injectable()
 export class IpcService {

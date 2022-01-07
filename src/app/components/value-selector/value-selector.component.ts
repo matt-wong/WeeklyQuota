@@ -2,7 +2,7 @@ import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { CalendarService } from '../services/calendar.service';
+import { CalendarService } from '../../services/calendar.service';
 import { quotaTopic, zeroValDay } from '../week-table/week-table.model';
 
 @Component({

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CalendarService } from './services/calendar.service';
 import { IpcService } from './services/ipc.service';
 import { SaveAndLoadService } from './services/save-and-load.service';
-import { dayValues, quotaTopic, zeroValDay } from './week-table/week-table.model';
+import { dayValues, quotaTopic, zeroValDay } from './components/week-table/week-table.model';
 
 @Component({
   selector: 'app-root',

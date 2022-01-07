@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { dayValues, quotaTopic, zeroValDay } from '.././week-table/week-table.model';
+import { dayValues, quotaTopic, zeroValDay } from '../components/week-table/week-table.model';
 import { IpcService } from './ipc.service';
 import { map, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
