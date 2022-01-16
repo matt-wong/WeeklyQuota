@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   public title = 'weeklyQuota';
   public quotas: quotaTopic[];
 
-  constructor(private saveLoadService: SaveAndLoadService, private calService: CalendarService, private _ipc: IpcService) {
+  constructor(private saveLoadService: SaveAndLoadService) {
     this.quotas = [];
   }
 
