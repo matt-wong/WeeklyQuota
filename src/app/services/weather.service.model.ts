@@ -11,6 +11,19 @@ export interface dayWeather {
     temp2m: minMaxTemp;
 }
 
+// clearday, clearnight
+// pcloudyday, pcloudynight
+// mcloudyday, mcloudynight
+// cloudyday, cloudynight
+// humidday, humidnight
+// lightrainday, lightrainnight
+// oshowerday, oshowernight
+// ishowerday, ishowernight
+// lightsnowday, lightsnownight
+// rainday, rainnight	
+// snowday, snownight	
+// rainsnowday, rainsnownight
+
 export interface minMaxTemp {
     min: number;
     max: number;

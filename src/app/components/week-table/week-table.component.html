@@ -52,7 +52,7 @@
         </div>
       </div>
     </th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element" [ngClass]="{'wider-td': i === todayIndex || i === selectedDayIndex}" >
       <app-value-selector (changeEvent)='onSelectionChange(element)' [element]='element' [i]='i' [isSelected]='i === selectedDayIndex' ></app-value-selector>
     </td>
   </ng-container>
