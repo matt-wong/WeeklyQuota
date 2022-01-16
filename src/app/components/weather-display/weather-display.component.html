@@ -1,5 +1,5 @@
 <div *ngIf='dayWeather; else elseBlock'>
-    <label>{{dayWeather.temp2m.min}} to {{dayWeather.temp2m.max}} &nbsp;</label>
+    <label>{{dayWeather.temp2m.min}} to {{dayWeather.temp2m.max}} &deg;C &nbsp;</label>
     <label>{{dayWeather.weather | titlecase }}</label>
 </div>
 <ng-template #elseBlock>
