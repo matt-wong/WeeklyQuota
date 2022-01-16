@@ -89,7 +89,7 @@ table {
           width: fit-content;
         }
       }
-      animation: highlight-selected-day-header 0.5s;
+      animation: highlight-selected-day-header 1s;
     }
 
     .day-header {
@@ -127,8 +127,12 @@ table {
         margin: 10px;
         border: 1px solid #919bd0;
       }
-
     }
+
+    .progress-section:hover{
+        z-index: 10;
+        animation: progress-bar-grow 1s forwards;
+      }
 
     ::ng-deep .mat-progress-bar-background{
       animation: none!important;
@@ -148,4 +152,8 @@ table {
   @keyframes highlight-selected-day-header {
     0% {background-color: #cbd0e9;}
     100% {background-color: transparent;}
+  }
+
+  @keyframes progress-bar-grow {
+    100% {transform: scale(1.2);}
   }
