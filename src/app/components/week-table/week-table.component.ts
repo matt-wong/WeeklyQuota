@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { QuotaStatus, StatusFromItemPipe } from 'src/app/pipes/status-from-item.pipe';
 import { QuotaPercentPipe } from '../../pipes/quota-percent.pipe';
-import { StatusFromItemPipe } from '../../pipes/status-from-item.pipe';
 import { CalendarService } from '../../services/calendar.service';
 import { SaveAndLoadService } from '../../services/save-and-load.service';
 import { WeatherService } from '../../services/weather.service';
@@ -37,9 +37,12 @@ export class WeekTableComponent implements OnInit {
     private snackBarService: MatSnackBar,
     private saveService: SaveAndLoadService,
     private quotaPercentPipe: QuotaPercentPipe,
+    private statusPipe: StatusFromItemPipe,
     private calenderService: CalendarService,
     private weatherService: WeatherService
-  ) { this.todayIndex = calenderService.getDayOfWeek() }
+  ) {
+    this.todayIndex = calenderService.getDayOfWeek();
+  }
 
   ngOnInit(): void {
     this.dateNumbers[this.todayIndex] = this.calenderService.getDayOfMonth();
@@ -48,16 +51,6 @@ export class WeekTableComponent implements OnInit {
     }
 
     this.onCheckWeather();
-  }
-
-  public headerClassFromIndex(i: number): string {
-    if (i === this.todayIndex) {
-      return 'today-header';
-    } else if (i === this.selectedDayIndex) {
-      return 'selected-day-header'
-    } else {
-      return ''
-    }
   }
 
   onSelectionChange(quotaTopic: quotaTopic) {
@@ -80,6 +73,31 @@ export class WeekTableComponent implements OnInit {
         }
       });
     })
+  }
+
+  // Style Selector Functions
+  public headerClassFromIndex(i: number): string {
+    if (i === this.todayIndex) {
+      return 'today-header';
+    } else if (i === this.selectedDayIndex) {
+      return 'selected-day-header'
+    } else {
+      return ''
+    }
+  }
+
+  public progressBarClass(element: quotaTopic): string {
+    const status = this.statusPipe.transform(element, this.todayIndex)
+    switch (status) {
+      case QuotaStatus.ahead:
+        return 'good-progress';
+      case QuotaStatus.behind:
+        return 'bad-progress';
+      case QuotaStatus.complete:
+        return 'complete-progress';
+      case QuotaStatus.danger:
+        return 'very-bad-progress';
+    }
   }
 
 }
