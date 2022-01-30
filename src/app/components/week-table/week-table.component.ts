@@ -37,7 +37,6 @@ export class WeekTableComponent implements OnInit {
     private snackBarService: MatSnackBar,
     private saveService: SaveAndLoadService,
     private quotaPercentPipe: QuotaPercentPipe,
-    private statusFromItemPipe: StatusFromItemPipe,
     private calenderService: CalendarService,
     private weatherService: WeatherService
   ) { this.todayIndex = calenderService.getDayOfWeek() }
@@ -67,10 +66,6 @@ export class WeekTableComponent implements OnInit {
     if (this.quotaPercentPipe.transform(quotaTopic) >= 100) {
       this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', { duration: 4000 });
     }
-
-    this.quotas.forEach(element => {
-      console.log(this.statusFromItemPipe.transform(element, 3))
-    });
 
     //TODO: Full week Complete! toast
   }
