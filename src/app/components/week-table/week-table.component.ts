@@ -75,6 +75,20 @@ export class WeekTableComponent implements OnInit {
     })
   }
 
+  public generateTooltipText(element: quotaTopic): string {
+    const status = this.statusPipe.transform(element, this.todayIndex)
+    let planSum = 0;
+    element.daysValues.forEach(val => {
+      planSum = planSum + val.planned;
+    });
+
+    if (planSum > 0) {
+      return `${status}  -  Planned: ${planSum}`
+    } else {
+      return `${status}`
+    }
+  }
+
   // Style Selector Functions
   public headerClassFromIndex(i: number): string {
     if (i === this.todayIndex) {
