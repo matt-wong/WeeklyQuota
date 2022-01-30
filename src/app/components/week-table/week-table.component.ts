@@ -83,7 +83,7 @@ export class WeekTableComponent implements OnInit {
     });
 
     if (planSum > 0) {
-      return `${status}  -  Planned: ${planSum}`
+      return `${status}\u00A0\u00A0\u00A0\u00A0Planned: ${planSum}`
     } else {
       return `${status}`
     }
