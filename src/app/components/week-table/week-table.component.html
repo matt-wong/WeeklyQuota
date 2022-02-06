@@ -36,7 +36,7 @@
   <ng-container *ngFor="let defName of defNames; let i = index" matColumnDef="{{defName}}">
     <th mat-header-cell *matHeaderCellDef [ngClass]="headerClassFromIndex(i)">
       <div class="day-header">
-        <label class="day-label" (click)="selectedDayIndex = i">
+        <label class="day-label" (click)="selectDay(i)">
           {{ dayDisplayNames[i] + ' ' + dateNumbers[i]}}
         </label>
         <app-weather-display [dayWeather]='dayWeather[i]'></app-weather-display>

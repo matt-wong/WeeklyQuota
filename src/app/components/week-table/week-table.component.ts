@@ -75,6 +75,11 @@ export class WeekTableComponent implements OnInit {
     })
   }
 
+  selectDay(dayIndex: number) {
+    this.selectedDayIndex = dayIndex;
+    this.todayIndex = this.calenderService.getDayOfWeek();
+  }
+
   public generateTooltipText(element: quotaTopic): string {
     const status = this.statusPipe.transform(element, this.todayIndex)
     let planSum = 0;
