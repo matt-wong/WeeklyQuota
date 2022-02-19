@@ -1,5 +1,7 @@
+import { OnDestroy } from '@angular/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { QuotaStatus, StatusFromItemPipe } from 'src/app/pipes/status-from-item.pipe';
 import { QuotaPercentPipe } from '../../pipes/quota-percent.pipe';
 import { CalendarService } from '../../services/calendar.service';
@@ -13,7 +15,7 @@ import { quotaTopic } from './week-table.model';
   templateUrl: './week-table.component.html',
   styleUrls: ['./week-table.component.scss']
 })
-export class WeekTableComponent implements OnInit {
+export class WeekTableComponent implements OnInit, OnDestroy {
 
   // TODO: Select past dates (Planned -> Done.)
 
@@ -22,7 +24,6 @@ export class WeekTableComponent implements OnInit {
   // TODO: Editable Quota Topics
 
   @Input() quotas: quotaTopic[] = [];
-  // @Output() valueChange: EventEmitter<boolean> = new EventEmitter;
 
   defNames: string[] = ['day0', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6'];
   dayDisplayNames: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -33,6 +34,8 @@ export class WeekTableComponent implements OnInit {
   todayIndex = 0;
   selectedDayIndex = -1;
 
+  private calendarSub: Subscription;
+
   constructor(
     private snackBarService: MatSnackBar,
     private saveService: SaveAndLoadService,
@@ -42,6 +45,9 @@ export class WeekTableComponent implements OnInit {
     private weatherService: WeatherService
   ) {
     this.todayIndex = calenderService.getDayOfWeek();
+    this.calendarSub = this.calenderService.dayChange$.subscribe((newDayOfWeek) => {
+      this.todayIndex = newDayOfWeek;
+    });
   }
 
   ngOnInit(): void {
@@ -77,7 +83,13 @@ export class WeekTableComponent implements OnInit {
 
   selectDay(dayIndex: number) {
     this.selectedDayIndex = dayIndex;
-    this.todayIndex = this.calenderService.getDayOfWeek();
+    this.calenderService.refreshDay();
+  }
+
+  ngOnDestroy(): void {
+    if (this.calendarSub){
+      this.calendarSub.unsubscribe();
+    }
   }
 
   public generateTooltipText(element: quotaTopic): string {

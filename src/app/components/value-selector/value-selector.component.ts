@@ -1,7 +1,9 @@
 import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CalendarService } from '../../services/calendar.service';
 import { quotaTopic, zeroValDay } from '../week-table/week-table.model';
 
@@ -10,7 +12,7 @@ import { quotaTopic, zeroValDay } from '../week-table/week-table.model';
   templateUrl: './value-selector.component.html',
   styleUrls: ['./value-selector.component.scss']
 })
-export class ValueSelectorComponent implements OnInit {
+export class ValueSelectorComponent implements OnInit, OnDestroy {
 
   @Input() element: quotaTopic = {name:'dummy', icon: 'dummy', weekComment: '', daysValues: JSON.parse(JSON.stringify(Array(7).fill(zeroValDay))), quota: 1};
   @Input() i: number = 0;
@@ -23,12 +25,24 @@ export class ValueSelectorComponent implements OnInit {
   valueOptions: number[] = [0, 0.5, 1, 1.5, 2];
   addedCompleteValue: number = 0;
 
+  calendarSub: Subscription;
+
   constructor(private calendarService: CalendarService) {
     this.dayOfWeek = this.calendarService.getDayOfWeek()
+    this.calendarSub = this.calendarService.dayChange$.subscribe((newDayOfWeek) => {
+      this.dayOfWeek = newDayOfWeek;
+      this.isFuture = this.i > this.dayOfWeek;
+    })
   }
 
   ngOnInit(): void {
     this.isFuture = this.i > this.dayOfWeek;
+  }
+
+  ngOnDestroy(): void {
+    if (this.calendarSub){
+      this.calendarSub.unsubscribe();
+    }
   }
 
   onSelectionChange($event: any, quotaTopic?: quotaTopic){

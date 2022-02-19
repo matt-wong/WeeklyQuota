@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarService {
+
+  public dayChange$ = new Subject<number>();
 
   constructor() { }
 
@@ -28,6 +31,10 @@ export class CalendarService {
     }
 
     return now.getDate();
+  }
+
+  refreshDay(): void {
+    this.dayChange$.next(this.getDayOfWeek());
   }
 
 
