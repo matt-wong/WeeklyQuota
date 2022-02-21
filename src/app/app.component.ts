@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { CalendarService } from './services/calendar.service';
-import { IpcService } from './services/ipc.service';
 import { SaveAndLoadService } from './services/save-and-load.service';
-import { dayValues, quotaTopic, zeroValDay } from './components/week-table/week-table.model';
+import { quotaTopic, zeroValDay } from './components/week-table/week-table.model';
+import { ImageService } from './image.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +15,10 @@ export class AppComponent implements OnInit {
   public showAdminSettings = false;
   public title = 'weeklyQuota';
   public quotas: quotaTopic[];
+  
+  public testImageUrl: string = ''
 
-  constructor(private saveLoadService: SaveAndLoadService) {
+  constructor(private saveLoadService: SaveAndLoadService, private imageService: ImageService) {
     this.quotas = [];
   }
 
@@ -61,5 +61,13 @@ export class AppComponent implements OnInit {
 
   onLoadFromImport(event: quotaTopic[]) {
     this.quotas = event;
+  }
+
+  testImage(){
+    this.imageService.getImage().then((url: string | void) => {
+      if (url){
+        this.testImageUrl = url;
+      }
+    });
   }
 }
