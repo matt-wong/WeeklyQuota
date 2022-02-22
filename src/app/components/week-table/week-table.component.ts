@@ -86,7 +86,7 @@ export class WeekTableComponent implements OnInit, OnDestroy {
   }
 
   checkForWeekCompletion(): boolean{
-    if (this.quotas.every((q) => { return this.quotaPercentPipe.transform(q) >= 100 })) {
+    if (this.quotas.length > 0 && this.quotas.every((q) => { return this.quotaPercentPipe.transform(q) >= 100 })) {
       this.weekComplete$.emit();
       return true;
       // this.snackBarService.open('YAY! \n' + 'All quotas in the week have been completed!', 'nice.', { duration: 4000 });
