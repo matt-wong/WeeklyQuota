@@ -57,8 +57,7 @@ export class WeekTableComponent implements OnInit, OnDestroy {
     }
 
     this.onCheckWeather();
-
-    
+    this.checkForWeekCompletion();
   }
 
   onSelectionChange(quotaTopic: quotaTopic) {

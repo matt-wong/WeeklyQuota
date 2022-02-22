@@ -23,7 +23,7 @@ export class ImageService {
   }
 
   getImage(){
-    return this.api.photos.getRandom({collectionIds: ['137627','1927776', '8374700'], orientation:'landscape'})
+    return this.api.photos.getRandom({collectionIds: ['137627','1927776', '8374700', '786242'], orientation:'landscape'})
     .then(result => {
       const asSingleResp: Random = result.response as Random;
       if (asSingleResp) {
