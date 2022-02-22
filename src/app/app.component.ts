@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
 
       if (this.quotas?.length === 0) {
         this.quotas = this.saveLoadService.loadDataCookies();
-        this.checkQuotasForCompletion();
       }
     }, 3000);
 
@@ -47,7 +46,6 @@ export class AppComponent implements OnInit {
     });
 
     this.quotas = this.quotas.slice();
-    this.checkQuotasForCompletion();
   }
 
   onSave() {
@@ -62,13 +60,13 @@ export class AppComponent implements OnInit {
 
   onLoadFromImport(event: quotaTopic[]) {
     this.quotas = event;
-    this.checkQuotasForCompletion();
   }
 
-  checkQuotasForCompletion(){
+  closeCompletionPage(){
+    this.showCompletionPage = false;
+  }
 
-    //TODO: Actaul check for completed week here:
-
+  onComplete(){
     this.showCompletionPage = true;
   }
 }

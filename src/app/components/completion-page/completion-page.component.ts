@@ -13,13 +13,12 @@ export class CompletionPageComponent implements OnInit {
   constructor(private imageService: ImageService) { }
 
   ngOnInit(): void {
-    this.testImage()
+    this.getImage()
   }
 
-  testImage(){
+  getImage(){
     this.imageService.getImage().then((url: string | void) => {
       if (url){
-        console.log(url);
         this.imageUrl = url;
       }
     });

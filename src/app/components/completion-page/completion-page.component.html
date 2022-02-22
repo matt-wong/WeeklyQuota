@@ -1,1 +1,4 @@
-<img [src]="imageUrl">
+<div *ngIf="imageUrl" class="container">
+    <img [src]="imageUrl">
+    <h2 class="overlay">You are done. Do whatever you want now.</h2>
+</div>

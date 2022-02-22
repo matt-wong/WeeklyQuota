@@ -1,7 +1,7 @@
 <div class="container">
     <div>
         <H1>{{title}}</H1>
-        <app-week-table [quotas]='quotas'></app-week-table>
+        <app-week-table [quotas]='quotas' (weekComplete$)="onComplete()"></app-week-table>
         
         <button mat-icon-button (click)="onSave()">
             <mat-icon>save</mat-icon>
@@ -14,7 +14,7 @@
         </button>
         <app-import-export-text *ngIf='showAdminSettings' [quotaData]='quotas' (importNewDataEvent)='onLoadFromImport($event)'></app-import-export-text>
     </div>
-    <div class="overlay" *ngIf="showCompletionPage">
+    <div class="overlay" *ngIf="showCompletionPage" (click)="closeCompletionPage()">
         <app-completion-page></app-completion-page>
     </div>
 </div>
