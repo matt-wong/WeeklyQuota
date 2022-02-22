@@ -1,17 +1,21 @@
-<H1>{{title}}</H1>
-<app-week-table [quotas]='quotas'></app-week-table>
+<div class="container">
+    <div>
+        <H1>{{title}}</H1>
+        <app-week-table [quotas]='quotas'></app-week-table>
+        
+        <button mat-icon-button (click)="onSave()">
+            <mat-icon>save</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onClear()">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="showAdminSettings = !showAdminSettings">
+            <mat-icon>settings</mat-icon>
+        </button>
+        <app-import-export-text *ngIf='showAdminSettings' [quotaData]='quotas' (importNewDataEvent)='onLoadFromImport($event)'></app-import-export-text>
+    </div>
+    <div class="overlay" *ngIf="showCompletionPage">
+        <app-completion-page></app-completion-page>
+    </div>
+</div>
 
-<button mat-icon-button (click)="onSave()">
-    <mat-icon>save</mat-icon>
-</button>
-<button mat-icon-button (click)="onClear()">
-    <mat-icon>delete</mat-icon>
-</button>
-<button mat-icon-button (click)="showAdminSettings = !showAdminSettings">
-    <mat-icon>settings</mat-icon>
-</button>
-<button mat-icon-button (click)="testImage()">
-    <mat-icon>image</mat-icon>
-</button>
-<img [src]="testImageUrl">
-<app-import-export-text *ngIf='showAdminSettings' [quotaData]='quotas' (importNewDataEvent)='onLoadFromImport($event)'></app-import-export-text>

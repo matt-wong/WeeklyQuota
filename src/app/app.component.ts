@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaveAndLoadService } from './services/save-and-load.service';
 import { quotaTopic, zeroValDay } from './components/week-table/week-table.model';
-import { ImageService } from './image.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +15,9 @@ export class AppComponent implements OnInit {
   public title = 'weeklyQuota';
   public quotas: quotaTopic[];
   
-  public testImageUrl: string = ''
+  public showCompletionPage = false
 
-  constructor(private saveLoadService: SaveAndLoadService, private imageService: ImageService) {
+  constructor(private saveLoadService: SaveAndLoadService) {
     this.quotas = [];
   }
 
@@ -36,6 +35,7 @@ export class AppComponent implements OnInit {
 
       if (this.quotas?.length === 0) {
         this.quotas = this.saveLoadService.loadDataCookies();
+        this.checkQuotasForCompletion();
       }
     }, 3000);
 
@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
     });
 
     this.quotas = this.quotas.slice();
+    this.checkQuotasForCompletion();
   }
 
   onSave() {
@@ -61,13 +62,13 @@ export class AppComponent implements OnInit {
 
   onLoadFromImport(event: quotaTopic[]) {
     this.quotas = event;
+    this.checkQuotasForCompletion();
   }
 
-  testImage(){
-    this.imageService.getImage().then((url: string | void) => {
-      if (url){
-        this.testImageUrl = url;
-      }
-    });
+  checkQuotasForCompletion(){
+
+    //TODO: Actaul check for completed week here:
+
+    this.showCompletionPage = true;
   }
 }

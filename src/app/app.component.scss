@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    background: rgba(1, 1, 1, 0.5); /* White see-through */
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
