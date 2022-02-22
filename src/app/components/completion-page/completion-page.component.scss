@@ -4,6 +4,12 @@
         left: 50%;
         /* bring your own prefixes */
         transform: translate(-50%, -50%);
+
+        animation: fadeIn 4s;
+        -webkit-animation: fadeIn 4s;
+        -moz-animation: fadeIn 4s;
+        -o-animation: fadeIn 4s;
+        -ms-animation: fadeIn 4s;
 }
 
 .overlay {
@@ -12,3 +18,28 @@
     text-align: center;
     padding: 20px;
 }
+
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
