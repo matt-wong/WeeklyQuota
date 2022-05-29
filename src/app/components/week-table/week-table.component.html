@@ -44,8 +44,11 @@
           <label>Done.</label>
           <label>Plan.</label>
         </div>
-        <div class="sub-headers" *ngIf="i<todayIndex && i !== selectedDayIndex">
-          <label>Done.</label>
+        <div class="done-sub-headers" *ngIf="i<todayIndex && i !== selectedDayIndex">
+          <span>
+            <label>Done.</label>
+            <mat-icon *ngIf="quotas | unfinishedPlan : i" aria-hidden="false">assignment_late</mat-icon>
+          </span>
         </div>
         <div class="sub-headers" *ngIf="i>todayIndex && i !== selectedDayIndex">
           <label>Plan.</label>

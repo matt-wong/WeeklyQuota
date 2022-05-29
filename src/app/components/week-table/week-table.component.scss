@@ -116,7 +116,33 @@ table {
       }
 
     }
-    
+
+    .done-sub-headers {
+      span{
+        width: 80px;
+
+        label{
+          padding: 0;
+          width: auto;
+          display: inline-flex;
+          
+          color: #919bd0;
+          background-color: transparent;
+        }
+
+        .mat-icon{
+          height: auto;
+          width: auto;
+
+          font-size: 14px;
+          vertical-align: text-top;
+          color: rgb(255, 112, 112);
+        };
+      }
+
+      margin-top: 10px;
+    }
+
     .progress-section{
       display: flex;
       align-items: center;

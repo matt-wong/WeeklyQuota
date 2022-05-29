@@ -26,6 +26,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { WeatherDisplayComponent } from './components/weather-display/weather-display.component';
 import { CompletionPageComponent } from './components/completion-page/completion-page.component';
+import { UnfinishedPlanPipe } from './pipes/unfinished-plan.pipe';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { CompletionPageComponent } from './components/completion-page/completion
     ImportExportTextComponent,
     StatusFromItemPipe,
     WeatherDisplayComponent,
-    CompletionPageComponent
+    CompletionPageComponent,
+    UnfinishedPlanPipe
   ],
   imports: [
     BrowserModule,
