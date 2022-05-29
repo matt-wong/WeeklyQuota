@@ -25,6 +25,7 @@ import { StatusFromItemPipe } from './pipes/status-from-item.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { WeatherDisplayComponent } from './components/weather-display/weather-display.component';
+import { CompletionPageComponent } from './components/completion-page/completion-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { WeatherDisplayComponent } from './components/weather-display/weather-di
     QuotaPlanPercentPipe,
     ImportExportTextComponent,
     StatusFromItemPipe,
-    WeatherDisplayComponent
+    WeatherDisplayComponent,
+    CompletionPageComponent
   ],
   imports: [
     BrowserModule,

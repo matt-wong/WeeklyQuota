@@ -17,13 +17,13 @@ import { quotaTopic } from './week-table.model';
 })
 export class WeekTableComponent implements OnInit, OnDestroy {
 
-  // TODO: Select past dates (Planned -> Done.)
-
   // TODO: Adjustable Quotas
 
   // TODO: Editable Quota Topics
 
   @Input() quotas: quotaTopic[] = [];
+
+  @Output() weekComplete$: EventEmitter<void> = new EventEmitter();
 
   defNames: string[] = ['day0', 'day1', 'day2', 'day3', 'day4', 'day5', 'day6'];
   dayDisplayNames: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -57,16 +57,15 @@ export class WeekTableComponent implements OnInit, OnDestroy {
     }
 
     this.onCheckWeather();
+    this.checkForWeekCompletion();
   }
 
   onSelectionChange(quotaTopic: quotaTopic) {
     this.saveService.saveData(this.quotas);
 
-    if (this.quotaPercentPipe.transform(quotaTopic) >= 100) {
+    if (!this.checkForWeekCompletion() && this.quotaPercentPipe.transform(quotaTopic) >= 100) {
       this.snackBarService.open('YAY! \n' + quotaTopic.name + ' has been completed for the week!', 'nice.', { duration: 4000 });
     }
-
-    //TODO: Full week Complete! toast
   }
 
   onCheckWeather() {
@@ -84,6 +83,15 @@ export class WeekTableComponent implements OnInit, OnDestroy {
   selectDay(dayIndex: number) {
     this.selectedDayIndex = dayIndex;
     this.calenderService.refreshDay();
+  }
+
+  checkForWeekCompletion(): boolean{
+    if (this.quotas.length > 0 && this.quotas.every((q) => { return this.quotaPercentPipe.transform(q) >= 100 })) {
+      this.weekComplete$.emit();
+      return true;
+      // this.snackBarService.open('YAY! \n' + 'All quotas in the week have been completed!', 'nice.', { duration: 4000 });
+    }
+    return false;
   }
 
   ngOnDestroy(): void {

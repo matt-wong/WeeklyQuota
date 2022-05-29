@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { CalendarService } from './services/calendar.service';
-import { IpcService } from './services/ipc.service';
 import { SaveAndLoadService } from './services/save-and-load.service';
-import { dayValues, quotaTopic, zeroValDay } from './components/week-table/week-table.model';
+import { quotaTopic, zeroValDay } from './components/week-table/week-table.model';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +14,8 @@ export class AppComponent implements OnInit {
   public showAdminSettings = false;
   public title = 'weeklyQuota';
   public quotas: quotaTopic[];
+  
+  public showCompletionPage = false
 
   constructor(private saveLoadService: SaveAndLoadService) {
     this.quotas = [];
@@ -61,5 +60,13 @@ export class AppComponent implements OnInit {
 
   onLoadFromImport(event: quotaTopic[]) {
     this.quotas = event;
+  }
+
+  closeCompletionPage(){
+    this.showCompletionPage = false;
+  }
+
+  onComplete(){
+    this.showCompletionPage = true;
   }
 }
