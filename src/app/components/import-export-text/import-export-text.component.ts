@@ -3,6 +3,8 @@ import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { quotaTopic } from '../week-table/week-table.model';
+import {Clipboard} from '@angular/cdk/clipboard';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-import-export-text',
@@ -16,13 +18,15 @@ export class ImportExportTextComponent implements OnInit {
 
   public jsonQuotaText: string = ''
 
-  constructor() { }
+  constructor(private clipboard: Clipboard, private snackBarService: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   onExport(){
     this.jsonQuotaText = JSON.stringify(this.quotaData);
+    this.clipboard.copy(this.jsonQuotaText);
+    this.snackBarService.open('Data Copied to clipboard', 'Ok', { duration: 4000 });
   }
 
   onImport(){

@@ -27,6 +27,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { WeatherDisplayComponent } from './components/weather-display/weather-display.component';
 import { CompletionPageComponent } from './components/completion-page/completion-page.component';
 import { UnfinishedPlanPipe } from './pipes/unfinished-plan.pipe';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { UnfinishedPlanPipe } from './pipes/unfinished-plan.pipe';
     MatInputModule,
     MatSnackBarModule,
     MatTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule
   ],
   providers: [QuotaPercentPipe, SaveAndLoadService, IpcService, StatusFromItemPipe, HttpClient],
   bootstrap: [AppComponent]

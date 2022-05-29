@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SaveAndLoadService } from './services/save-and-load.service';
 import { quotaTopic, zeroValDay } from './components/week-table/week-table.model';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   
   public showCompletionPage = false
 
-  constructor(private saveLoadService: SaveAndLoadService) {
+  constructor(private saveLoadService: SaveAndLoadService, private clipboard: Clipboard) {
     this.quotas = [];
   }
 

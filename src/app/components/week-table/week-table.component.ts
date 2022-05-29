@@ -18,8 +18,9 @@ import { quotaTopic } from './week-table.model';
 export class WeekTableComponent implements OnInit, OnDestroy {
 
   // TODO: Adjustable Quotas
-
+  // TODO: List of comments
   // TODO: Editable Quota Topics
+  // TODO: Copy quota to clipboard
 
   @Input() quotas: quotaTopic[] = [];
 
