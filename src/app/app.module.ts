@@ -28,6 +28,7 @@ import { WeatherDisplayComponent } from './components/weather-display/weather-di
 import { CompletionPageComponent } from './components/completion-page/completion-page.component';
 import { UnfinishedPlanPipe } from './pipes/unfinished-plan.pipe';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { QuotaHeaderComponent } from './quota-header/quota-header.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     StatusFromItemPipe,
     WeatherDisplayComponent,
     CompletionPageComponent,
-    UnfinishedPlanPipe
+    UnfinishedPlanPipe,
+    QuotaHeaderComponent
   ],
   imports: [
     BrowserModule,
