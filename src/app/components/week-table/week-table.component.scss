@@ -11,7 +11,32 @@ table {
     }
 
     .mat-column-status{
-      width: 50px;
+      width: 75px;
+      
+      .progress-cell{
+        display: flex;
+        align-items: center;
+
+        label {
+          flex-grow: 1;
+          white-space: nowrap;
+        }
+
+        .arrow-buttons{
+          margin-right: auto;
+          display: flex;
+          flex-direction: column;
+          mat-icon{
+            font-size: 16px;
+            cursor: pointer;
+            &:hover{
+              font-weight: bold;
+            }
+            height: 16px;
+            width: 16px;
+          }
+        }
+      }
     }
 
     .mat-column-statusBar{
@@ -116,6 +141,7 @@ table {
       }
 
     }
+
 
     .done-sub-headers {
       span{

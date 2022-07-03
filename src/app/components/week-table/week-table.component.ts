@@ -101,6 +101,14 @@ export class WeekTableComponent implements OnInit, OnDestroy {
     }
   }
 
+  public increaseQuota(element: quotaTopic): void {
+    element.quota += 1;
+  }
+
+  public decreaseQuota(element: quotaTopic): void {
+    element.quota -= 1;
+  }
+
   public generateTooltipText(element: quotaTopic): string {
     const status = this.statusPipe.transform(element, this.todayIndex)
     let planSum = 0;
