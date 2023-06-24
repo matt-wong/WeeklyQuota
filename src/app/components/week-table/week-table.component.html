@@ -32,10 +32,13 @@
 
   <ng-container matColumnDef="comment">
     <th mat-header-cell *matHeaderCellDef> Comment </th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element" class="td-flex">
       <mat-form-field class="wider-form-field">
         <input matInput [(ngModel)] = 'element.weekComment'>
       </mat-form-field>
+      <button mat-icon-button (click)="popupComments(element)">
+        <mat-icon>settings</mat-icon>
+      </button>
     </td>
   </ng-container>
 

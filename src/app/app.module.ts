@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
@@ -29,6 +30,7 @@ import { CompletionPageComponent } from './components/completion-page/completion
 import { UnfinishedPlanPipe } from './pipes/unfinished-plan.pipe';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { QuotaHeaderComponent } from './quota-header/quota-header.component';
+import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { QuotaHeaderComponent } from './quota-header/quota-header.component';
     WeatherDisplayComponent,
     CompletionPageComponent,
     UnfinishedPlanPipe,
-    QuotaHeaderComponent
+    QuotaHeaderComponent,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { QuotaHeaderComponent } from './quota-header/quota-header.component';
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
+    MatDialogModule,
     FormsModule,
     MatSelectModule,
     MatProgressBarModule,

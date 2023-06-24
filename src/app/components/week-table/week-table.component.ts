@@ -1,5 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { QuotaStatus, StatusFromItemPipe } from 'src/app/pipes/status-from-item.pipe';
@@ -8,6 +9,8 @@ import { CalendarService } from '../../services/calendar.service';
 import { SaveAndLoadService } from '../../services/save-and-load.service';
 import { WeatherService } from '../../services/weather.service';
 import { dayWeather } from '../../services/weather.service.model';
+import { CommentDialogComponent } from '../comment-dialog/comment-dialog.component';
+import { ValueSelectorComponent } from '../value-selector/value-selector.component';
 import { quotaTopic } from './week-table.model';
 
 @Component({
@@ -17,10 +20,8 @@ import { quotaTopic } from './week-table.model';
 })
 export class WeekTableComponent implements OnInit, OnDestroy {
 
-  // TODO: Adjustable Quotas
   // TODO: List of comments
   // TODO: Editable Quota Topics
-  // TODO: Copy quota to clipboard
 
   @Input() quotas: quotaTopic[] = [];
 
@@ -39,6 +40,7 @@ export class WeekTableComponent implements OnInit, OnDestroy {
 
   constructor(
     private snackBarService: MatSnackBar,
+    private dialog: MatDialog,
     private saveService: SaveAndLoadService,
     private quotaPercentPipe: QuotaPercentPipe,
     private statusPipe: StatusFromItemPipe,
@@ -52,6 +54,10 @@ export class WeekTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.refreshWeek();
+  }
+
+  private refreshWeek(){
     this.dateNumbers[this.todayIndex] = this.calenderService.getDayOfMonth();
     for (let i = 0; i <= 6; i++) {
       this.dateNumbers[i] = this.calenderService.getDayOfMonth(i - this.todayIndex);
@@ -82,6 +88,8 @@ export class WeekTableComponent implements OnInit, OnDestroy {
   }
 
   selectDay(dayIndex: number) {
+    this.refreshWeek()
+
     this.selectedDayIndex = dayIndex;
     this.calenderService.refreshDay();
   }
@@ -146,6 +154,17 @@ export class WeekTableComponent implements OnInit, OnDestroy {
       case QuotaStatus.danger:
         return 'very-bad-progress';
     }
+  }
+
+  public popupComments(element: quotaTopic): void {
+    const dialogRef = this.dialog.open(CommentDialogComponent, {
+      data: element,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      element.weekComment = result;
+    });
   }
 
 }
