@@ -30,7 +30,7 @@ import { CompletionPageComponent } from './components/completion-page/completion
 import { UnfinishedPlanPipe } from './pipes/unfinished-plan.pipe';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { QuotaHeaderComponent } from './quota-header/quota-header.component';
-import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
+import { CommentDialogComponent } from './components/comment-dialog/comment-dialog.component';
 
 
 @NgModule({
