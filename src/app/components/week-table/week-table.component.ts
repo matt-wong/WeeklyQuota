@@ -162,8 +162,9 @@ export class WeekTableComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      element.weekComment = result;
+      if (result !== null){
+        element.weekComment = result;
+      }
     });
   }
 

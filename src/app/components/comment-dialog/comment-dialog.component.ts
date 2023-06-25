@@ -17,11 +17,14 @@ export class CommentDialogComponent {
     public dialogRef: MatDialogRef<CommentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: quotaTopic
   ) {
-    this.comment = (data.weekComment ?? '').replace('|', '\n');
+    this.comment = (data.weekComment ?? '').replace(/\|/g, '\n');
   }
 
   public submit(): void {
-    this.dialogRef.close(this.comment.replace('\n', '|'));
+    this.dialogRef.close(this.comment.replace(/(?:\r\n|\r|\n)/g, '|'));
   }
 
+  public cancel(): void {
+    this.dialogRef.close(null);
+  }
 }
