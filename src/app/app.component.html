@@ -1,6 +1,9 @@
 <div class="container">
     <div>
-        <H1>{{title}}</H1>
+        <div class="header-with-bar">
+            <H1>{{title}}</H1>
+            <mat-progress-bar [ngClass]="'good-progress'" mode="buffer" value="{{completedPercent}}" [bufferValue]="plannedPercent"></mat-progress-bar>  
+        </div>
         <app-week-table [quotas]='quotas' (weekComplete$)="onComplete()"></app-week-table>
         
         <button mat-icon-button (click)="onSave()">

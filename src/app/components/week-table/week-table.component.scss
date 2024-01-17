@@ -179,29 +179,12 @@ table {
       label {
         white-space: nowrap;
       }
-      mat-progress-bar{
-        margin: 10px;
-        border: 1px solid #919bd0;
-      }
     }
 
     .progress-section:hover{
         z-index: 10;
         animation: progress-bar-grow 1s forwards;
       }
-
-    ::ng-deep .mat-progress-bar-background{
-      animation: none!important;
-      background-color: white;
-    }
-
-    ::ng-deep .mat-progress-bar-buffer{
-      background-color: #cbd0e9;
-    }
-
-    ::ng-deep rect {
-      display: none!important;
-    }
 
   }
 

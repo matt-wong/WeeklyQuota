@@ -10,3 +10,11 @@
     padding: 20px;
     text-align: center;
 }
+
+.header-with-bar {
+    display: flex;
+    align-items: center;
+    .mat-progress-bar {
+        flex-grow: 1;
+    }
+}

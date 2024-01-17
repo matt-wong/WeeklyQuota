@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   public quotas: quotaTopic[];
   
   public showCompletionPage = false
+  public completedPercent = 0; // 0-100
+  public plannedPercent = 0; // 0-100
 
   constructor(private saveLoadService: SaveAndLoadService, private clipboard: Clipboard) {
     this.quotas = [];
@@ -26,8 +28,15 @@ export class AppComponent implements OnInit {
 
     this.saveLoadService.loadFromExternal$.subscribe((q: quotaTopic[]) => {
       this.loadQuotas(q);
+      this.refreshQuotaPercentage();
       }
     );
+
+      this.saveLoadService.dataSaved$.subscribe((q: quotaTopic[]) => {
+        console.log('yaya')
+        this.quotas = q;
+        this.refreshQuotaPercentage();
+      })
 
     this.saveLoadService.loadFromExternal();
   
@@ -36,9 +45,9 @@ export class AppComponent implements OnInit {
 
       if (this.quotas?.length === 0) {
         this.quotas = this.saveLoadService.loadDataCookies();
+        this.refreshQuotaPercentage();
       }
     }, 3000);
-
   }
 
   loadQuotas(newQ: quotaTopic[]){
@@ -47,6 +56,7 @@ export class AppComponent implements OnInit {
     });
 
     this.quotas = this.quotas.slice();
+    this.refreshQuotaPercentage();
   }
 
   onSave() {
@@ -61,6 +71,32 @@ export class AppComponent implements OnInit {
 
   onLoadFromImport(event: quotaTopic[]) {
     this.quotas = event;
+    this.refreshQuotaPercentage();
+  }
+
+  private refreshQuotaPercentage()
+  {
+    let total = 0
+    let sumPlanned = 0;
+    let sumDone = 0;
+
+    if (this.quotas?.length > 0)
+    {
+      this.quotas.forEach((q) => {
+
+        total += q.quota;
+  
+        q.daysValues.forEach(dayVal => {
+          sumPlanned += dayVal.planned;
+          sumDone += dayVal.completed;
+        });
+      });
+
+      this.completedPercent = sumDone / total * 100;
+      this.plannedPercent = sumPlanned / total * 100;
+    }
+
+
   }
 
   closeCompletionPage(){

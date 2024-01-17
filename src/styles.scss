@@ -53,3 +53,21 @@ body { margin: 10px; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .very-bad-progress .mat-progress-bar-fill::after {
   background-color: darkred;
 }
+
+.mat-progress-bar-background{
+  animation: none!important;
+  background-color: white;
+}
+
+.mat-progress-bar-buffer{
+  background-color: #cbd0e9;
+}
+
+rect {
+  display: none!important;
+}
+
+mat-progress-bar{
+  margin: 10px;
+  border: 1px solid #919bd0;
+}

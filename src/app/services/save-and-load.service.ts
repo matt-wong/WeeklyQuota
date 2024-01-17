@@ -10,7 +10,9 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SaveAndLoadService {
 
-  loadFromExternal$ = new Subject<quotaTopic[]>();
+  public loadFromExternal$ = new Subject<quotaTopic[]>();
+  public dataSaved$ = new Subject<quotaTopic[]>();
+
 
   loadFromExternal() {
     
@@ -88,6 +90,8 @@ export class SaveAndLoadService {
 
     this.cookieService.set('dataNames', JSON.stringify(dataNames), date, undefined, undefined, false, "Lax");
     this.ipcService.send('save', JSON.stringify(quotaData));
+
+    this.dataSaved$.next(quotaData);
   }
 
 }
