@@ -4,7 +4,7 @@ import { dayValues, quotaTopic, zeroValDay } from '../components/week-table/week
 import { IpcService } from './ipc.service';
 import { map, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -28,14 +28,29 @@ export class SaveAndLoadService {
   constructor(private cookieService: CookieService, private ipcService: IpcService, private http: HttpClient) {
   }
 
-  async getDataFromApi() {
+  async getQuotasFromApi() {
     try {
       // Make the HTTP GET request
-      const result = await this.http.get<quotaTopic[]>('https://dul-erin-quail-toga.cyclic.app//myFile.txt').toPromise();
+      const result = await this.http.get<quotaTopic[]>('https://dull-erin-quail-toga.cyclic.app/myFile.txt').toPromise();
       return result;
     } catch (error) {
       // Handle the error here
       console.error('Error fetching data:', error);
+      throw error; // You can choose to rethrow the error or handle it as needed
+    }
+  }
+
+  async setQuotasFromApi(quotas: quotaTopic[]) {
+    try {
+
+      
+      // Make the HTTP SET request
+      console.log("Saving with...", quotas);
+      await this.http.put('https://dull-erin-quail-toga.cyclic.app/myFile.txt', quotas, {responseType: "text"}).toPromise();
+      
+    } catch (error) {
+      // Handle the error here
+      console.error('Error setting data:', error);
       throw error; // You can choose to rethrow the error or handle it as needed
     }
   }
@@ -90,9 +105,12 @@ export class SaveAndLoadService {
   }
 
   
-  saveData(quotaData : quotaTopic[]) {
-    var date = new Date();
+  async saveData(quotaData : quotaTopic[]) {
+    // save To Backend Api
+    await this.setQuotasFromApi(quotaData);
 
+    // save to cookies
+    var date = new Date();
     // add a long expiry - year
     date.setDate(date.getDate() + 365);
     const dataNames = quotaData.map((element) => {return element.name});
@@ -102,6 +120,8 @@ export class SaveAndLoadService {
     });
 
     this.cookieService.set('dataNames', JSON.stringify(dataNames), date, undefined, undefined, false, "Lax");
+    
+    // save using Electron files
     this.ipcService.send('save', JSON.stringify(quotaData));
 
     this.dataSaved$.next(quotaData);

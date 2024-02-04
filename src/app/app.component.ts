@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
     try {
       // Call the getData method from the service
-      const data = await this.saveLoadService.getDataFromApi();
+      const data = await this.saveLoadService.getQuotasFromApi();
       console.log('Data received:', data);
       this.loadQuotas(data);
     } catch (error) {
