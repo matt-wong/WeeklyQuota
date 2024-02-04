@@ -4,6 +4,7 @@ import { dayValues, quotaTopic, zeroValDay } from '../components/week-table/week
 import { IpcService } from './ipc.service';
 import { map, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,21 @@ export class SaveAndLoadService {
     this.ipcService.send('load', {});
   }
 
-  constructor(private cookieService: CookieService, private ipcService: IpcService) {
+  constructor(private cookieService: CookieService, private ipcService: IpcService, private http: HttpClient) {
   }
 
+  async getDataFromApi() {
+    try {
+      // Make the HTTP GET request
+      const result = await this.http.get<quotaTopic[]>('https://dul-erin-quail-toga.cyclic.app//myFile.txt').toPromise();
+      return result;
+    } catch (error) {
+      // Handle the error here
+      console.error('Error fetching data:', error);
+      throw error; // You can choose to rethrow the error or handle it as needed
+    }
+  }
+  
   loadDataCookies(): quotaTopic[] {
 
     if (this.cookieService.get('dataNames')) {

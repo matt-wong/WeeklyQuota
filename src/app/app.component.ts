@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SaveAndLoadService } from './services/save-and-load.service';
 import { quotaTopic, zeroValDay } from './components/week-table/week-table.model';
 import {Clipboard} from '@angular/cdk/clipboard';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -20,34 +21,22 @@ export class AppComponent implements OnInit {
   public completedPercent = 0; // 0-100
   public plannedPercent = 0; // 0-100
 
-  constructor(private saveLoadService: SaveAndLoadService, private clipboard: Clipboard) {
+  constructor(private saveLoadService: SaveAndLoadService, private clipboard: Clipboard, private http: HttpClient) {
     this.quotas = [];
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
-    this.saveLoadService.loadFromExternal$.subscribe((q: quotaTopic[]) => {
-      this.loadQuotas(q);
-      this.refreshQuotaPercentage();
-      }
-    );
-
-      this.saveLoadService.dataSaved$.subscribe((q: quotaTopic[]) => {
-        console.log('yaya')
-        this.quotas = q;
-        this.refreshQuotaPercentage();
-      })
-
-    this.saveLoadService.loadFromExternal();
-  
-    setTimeout(() => {
-      this.loadQuotas([]);
-
-      if (this.quotas?.length === 0) {
-        this.quotas = this.saveLoadService.loadDataCookies();
-        this.refreshQuotaPercentage();
-      }
-    }, 3000);
+    try {
+      // Call the getData method from the service
+      const data = await this.saveLoadService.getDataFromApi();
+      console.log('Data received:', data);
+      this.loadQuotas(data);
+    } catch (error) {
+      // Handle the error as needed
+      console.error('Error in component:', error);
+      this.loadQuotas(this.saveLoadService.loadDataCookies());
+    }
   }
 
   loadQuotas(newQ: quotaTopic[]){
