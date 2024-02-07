@@ -1,16 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { dayValues, quotaTopic, zeroValDay } from '../components/week-table/week-table.model';
+import { Subject } from 'rxjs';
+import { dayValues, quotaTopic } from '../components/week-table/week-table.model';
 import { IpcService } from './ipc.service';
-import { map, tap } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaveAndLoadService {
 
+  readonly BACKEND_API_URL = 'https://dull-erin-quail-toga.cyclic.app'
+  readonly BACKEND_API_FILE_NAME = 'myFile.txt'
   public loadFromExternal$ = new Subject<quotaTopic[]>();
   public dataSaved$ = new Subject<quotaTopic[]>();
 
@@ -31,7 +32,7 @@ export class SaveAndLoadService {
   async getQuotasFromApi() {
     try {
       // Make the HTTP GET request
-      const result = await this.http.get<quotaTopic[]>('https://dull-erin-quail-toga.cyclic.app/myFile.txt').toPromise();
+      const result = await this.http.get<quotaTopic[]>(this.BACKEND_API_URL + "/" + this.BACKEND_API_FILE_NAME).toPromise();
       return result;
     } catch (error) {
       // Handle the error here
@@ -46,7 +47,7 @@ export class SaveAndLoadService {
       
       // Make the HTTP SET request
       console.log("Saving with...", quotas);
-      await this.http.put('https://dull-erin-quail-toga.cyclic.app/myFile.txt', quotas, {responseType: "text"}).toPromise();
+      await this.http.put(this.BACKEND_API_URL + "/" + this.BACKEND_API_FILE_NAME, quotas, {responseType: "text"}).toPromise();
       
     } catch (error) {
       // Handle the error here
