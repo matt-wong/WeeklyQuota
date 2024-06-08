@@ -61,6 +61,7 @@ export class AppComponent implements OnInit {
 
   onSave() {
     this.saveLoadService.saveData(this.quotas);
+    this.refreshQuotaPercentage();
   }
 
   onClear() {
