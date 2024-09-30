@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
       // Call the getData method from the service
       const data = await this.saveLoadService.getQuotasFromApi();
       console.log('Data received:', data);
-      this.loadQuotas(data);
+      this.loadQuotas(data as quotaTopic[]);
     } catch (error) {
       // Handle the error as needed
       console.error('Error in component:', error);
