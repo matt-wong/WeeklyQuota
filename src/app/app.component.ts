@@ -94,7 +94,8 @@ export class AppComponent implements OnInit {
       });
 
       this.completedPercent = sumDone / total * 100;
-      this.plannedPercent = sumPlanned / total * 100;
+      this.plannedPercent = (sumPlanned + sumDone) / total * 100;
+
     }
 
 
