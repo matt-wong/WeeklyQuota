@@ -27,17 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-
-    try {
-      // Call the getData method from the service
-      const data = await this.saveLoadService.getQuotasFromApi();
-      console.log('Data received:', data);
-      this.loadQuotas(data);
-    } catch (error) {
-      // Handle the error as needed
-      console.error('Error in component:', error);
       this.loadQuotas(this.saveLoadService.loadDataCookies());
-    }
   }
 
   loadQuotas(newQ: quotaTopic[]){

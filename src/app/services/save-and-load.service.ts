@@ -108,7 +108,7 @@ export class SaveAndLoadService {
   
   async saveData(quotaData : quotaTopic[]) {
     // save To Backend Api
-    await this.setQuotasFromApi(quotaData);
+    // await this.setQuotasFromApi(quotaData);
 
     // save to cookies
     var date = new Date();
