@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   public showCompletionPage = false
   public completedPercent = 0; // 0-100
   public plannedPercent = 0; // 0-100
+  public fractionString = "" // X / Y (Z)
 
   constructor(private saveLoadService: SaveAndLoadService, private clipboard: Clipboard) {
     this.quotas = [];
@@ -95,6 +96,7 @@ export class AppComponent implements OnInit {
 
       this.completedPercent = sumDone / total * 100;
       this.plannedPercent = (sumPlanned + sumDone) / total * 100;
+      this.fractionString = `${sumDone} / ${total} (${sumPlanned})`
 
     }
 
