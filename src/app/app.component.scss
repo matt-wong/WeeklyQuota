@@ -14,7 +14,37 @@
 .header-with-bar {
     display: flex;
     align-items: center;
-    .mat-progress-bar {
+    width: 100%;
+}
+
+.main-progress-bar-container {
+    position: relative; /* Ensures child elements can be absolutely positioned */
+    flex-grow: 1;
+    margin-left: 10px; /* Optional: Adds some spacing between the title and progress bar */
+}
+
+mat-progress-bar {
+    position: relative; /* Keep it relative inside the container */
+    width: calc(100% - 10px) !important;
+}
+
+.dayTicks {
+    position: absolute;
+    margin: 0 10px 0 10px;
+    top: 15px; /* Adjust this based on where you want the ticks */
+    left: 0;
+    width: 100%;
+    height: 4px; /* Adjust tick container height */
+    display: flex;
+
+    .section{
+        position: relative;
         flex-grow: 1;
+        background-color: transparent;
+    }
+    .tick{
+        width: 2px;
+        position: relative;
+        background-color: #919bd0;
     }
 }

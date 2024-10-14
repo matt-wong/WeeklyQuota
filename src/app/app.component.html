@@ -2,7 +2,24 @@
     <div>
         <div class="header-with-bar">
             <H1>{{title}}</H1>
-            <mat-progress-bar [ngClass]="'good-progress'" mode="buffer" value="{{completedPercent}}" [bufferValue]="plannedPercent"></mat-progress-bar>  
+            <div class="main-progress-bar-container">
+                <mat-progress-bar [ngClass]="'good-progress'" mode="buffer" value="{{completedPercent}}" [bufferValue]="plannedPercent"></mat-progress-bar> 
+                <div class="dayTicks">
+                    <div class="section"></div>
+                    <div class="tick"></div>
+                    <div class="section"></div>
+                    <div class="tick"></div>
+                    <div class="section"></div>
+                    <div class="tick"></div>
+                    <div class="section"></div>
+                    <div class="tick"></div>
+                    <div class="section"></div>
+                    <div class="tick"></div>
+                    <div class="section"></div>
+                    <div class="tick"></div>
+                    <div class="section"></div>
+                </div>
+            </div>
         </div>
         <app-week-table [quotas]='quotas' (weekComplete$)="onComplete()"></app-week-table>
         
