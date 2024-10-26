@@ -57,33 +57,13 @@ export class SaveAndLoadService {
     }
   }
 
-  async getQuotasFromApi() {
+  async getQuotasFromApi() : Promise<quotaTopic[]> {
     try {
       // Make the HTTP GET request
       // const result = await this.http.get<quotaTopic[]>(this.BACKEND_API_URL + "/" + this.BACKEND_API_FILE_NAME).toPromise();
       
       // Reference a document in the "users" collection, document ID is "user123"
       const userRef = doc(db, "users", "user123");
-      console.log('userRef', userRef);
-      // Set the document data (write it to Firestore)
-
-      const quotas : quotaTopic[] = [];
-
-      quotas.push({ name: 'Cooked Meals', daysValues: this.zeroValWeek(), icon: 'no_food', quota: 8, },
-        { name: 'Vegetarian Meals', daysValues: this.zeroValWeek(), icon: 'spa', quota: 3 },
-        { name: 'Exercise', daysValues: this.zeroValWeek(), icon: 'fitness_center', quota: 4 },
-        { name: 'Social', daysValues: this.zeroValWeek(), icon: 'people', quota: 4 },
-        { name: 'Help', daysValues: this.zeroValWeek(), icon: 'support', quota: 1 },
-        { name: 'Self-Development', daysValues: this.zeroValWeek(), icon: 'handyman', quota: 1.5 },
-        { name: 'New Thing', daysValues: this.zeroValWeek(), icon: 'new_releases', quota: 1.5 },
-        { name: 'House Maintainance', daysValues: this.zeroValWeek(), icon: 'home', quota: 3 },
-        { name: 'Hobby Session', daysValues: this.zeroValWeek(), icon: 'brush', quota: 5 },
-        { name: 'Meditate', daysValues: this.zeroValWeek(), icon: 'airline_seat_recline_extra', quota: 5 }
-      )
-
-      await setDoc(userRef, {
-        data: quotas
-      });
 
       // Fetch the document
       const docSnap = await getDoc(userRef);
@@ -95,7 +75,7 @@ export class SaveAndLoadService {
         console.log("No such document!");
       }
 
-      return docSnap.data();
+      return (docSnap.data()?.data as quotaTopic[]);
     } catch (error) {
       // Handle the error here
       console.error('Error fetching data:', error);
@@ -105,12 +85,10 @@ export class SaveAndLoadService {
 
   async setQuotasFromApi(quotas: quotaTopic[]) {
     try {
-
-      
-      // Make the HTTP SET request
-      console.log("Saving with...", quotas);
-      await this.http.put(this.BACKEND_API_URL + "/" + this.BACKEND_API_FILE_NAME, quotas, {responseType: "text"}).toPromise();
-      
+      const userRef = doc(db, "users", "user123");
+      await setDoc(userRef, {
+        data: quotas
+      });
     } catch (error) {
       // Handle the error here
       console.error('Error setting data:', error);
