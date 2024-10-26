@@ -6,26 +6,21 @@ import { dayValues, quotaTopic } from '../components/week-table/week-table.model
 import { IpcService } from './ipc.service';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"; 
+import firebaseConfig from '../../../src/environments/mattsFirebase.json';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBY6Zk0KJIYPYDqQTiMFZl5BEBot6PcwF0",
-  authDomain: "test-fb5ea.firebaseapp.com",
-  projectId: "test-fb5ea",
-  storageBucket: "test-fb5ea.appspot.com",
-  messagingSenderId: "1091158319615",
-  appId: "1:1091158319615:web:c5fc651b1acd7e18c3c7ca",
-  measurementId: "G-3TTD2PDLZH"
+const firebaseConfig1 = {
+  apiKey: firebaseConfig.FIREBASE_API_KEY,
+  authDomain: firebaseConfig.FIREBASE_AUTH_DOMAIN,
+  projectId: firebaseConfig.FIREBASE_PROJECT_ID,
+  storageBucket: firebaseConfig.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: firebaseConfig.FIREBASE_MESSAGING_SENDER_ID,
+  appId: firebaseConfig.FIREBASE_APP_ID,
+  measurementId: firebaseConfig.FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig1);
 const db = getFirestore(app);
 
 @Injectable({
