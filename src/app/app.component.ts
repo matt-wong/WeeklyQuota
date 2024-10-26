@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
     );
 
       this.saveLoadService.dataSaved$.subscribe((q: quotaTopic[]) => {
-        console.log('yaya')
         this.quotas = q;
         this.refreshQuotaPercentage();
       })
@@ -85,13 +84,15 @@ export class AppComponent implements OnInit {
     if (this.quotas?.length > 0)
     {
       this.quotas.forEach((q) => {
-
+        let completedForTopic = 0;
         total += q.quota;
   
         q.daysValues.forEach(dayVal => {
           sumPlanned += dayVal.planned;
-          sumDone += dayVal.completed;
+          completedForTopic += dayVal.completed;
         });
+
+        sumDone += Math.min(completedForTopic, q.quota);
       });
 
       this.completedPercent = sumDone / total * 100;
