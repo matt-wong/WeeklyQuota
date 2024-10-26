@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   public showCompletionPage = false
   public completedPercent = 0; // 0-100
   public plannedPercent = 0; // 0-100
+  public fractionString = "" // X / Y (Z)
 
   constructor(private saveLoadService: SaveAndLoadService, private clipboard: Clipboard, private http: HttpClient) {
     this.quotas = [];
@@ -57,6 +58,7 @@ export class AppComponent implements OnInit {
     this.quotas.forEach(quota => {
       quota.daysValues = JSON.parse(JSON.stringify(Array(7).fill(zeroValDay)));
     });
+    this.refreshQuotaPercentage();
   }
 
   onLoadFromImport(event: quotaTopic[]) {
@@ -73,17 +75,21 @@ export class AppComponent implements OnInit {
     if (this.quotas?.length > 0)
     {
       this.quotas.forEach((q) => {
-
+        let completedForTopic = 0;
         total += q.quota;
   
         q.daysValues.forEach(dayVal => {
           sumPlanned += dayVal.planned;
-          sumDone += dayVal.completed;
+          completedForTopic += dayVal.completed;
         });
+
+        sumDone += Math.min(completedForTopic, q.quota);
       });
 
       this.completedPercent = sumDone / total * 100;
-      this.plannedPercent = sumPlanned / total * 100;
+      this.plannedPercent = (sumPlanned + sumDone) / total * 100;
+      this.fractionString = `${sumDone} / ${total} (${sumPlanned})`
+
     }
 
 
