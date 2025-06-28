@@ -12,7 +12,7 @@
     "test": "ng test",
     "electron-start": "electron .",
     "electron-build-start": "ng build --base-href ./ && electron .",
-    "package-win": "ng build --prod --base-href ./ && electron-packager . WeeklyQuota --overwrite --platform=win32 --arch=ia32 --icon=favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\""
+    "package-win": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod --base-href ./ && electron-packager . WeeklyQuota --overwrite --platform=win32 --arch=ia32 --icon=favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\""
   },
   "private": true,
   "dependencies": {
